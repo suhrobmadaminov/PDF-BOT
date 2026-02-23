@@ -1,0 +1,24 @@
+# Railway Nixpacks konfiguratsiyasi
+# Tizim darajasidagi kutubxona va dasturlarni o'rnatish
+
+[phases.setup]
+# Tesseract OCR va kerakli tizim kutubxonalari
+aptPkgs = [
+    "tesseract-ocr",
+    "tesseract-ocr-uzb",
+    "tesseract-ocr-rus",
+    "tesseract-ocr-ara",
+    "tesseract-ocr-eng",
+    "libgl1",
+    "libglib2.0-0",
+    "libgomp1",
+    "libpng-dev",
+    "libjpeg-dev",
+    "zlib1g-dev",
+]
+
+[phases.install]
+cmds = ["pip install --no-cache-dir -r requirements.txt"]
+
+[start]
+cmd = "python main.py"
