@@ -28,6 +28,23 @@ from services.image_editor import ImageEditor
 from database import Database
 
 
+async def _safe_edit_text(query, text: str, **kwargs) -> None:
+    """
+    Xabarni xavfsiz tahrirlash: photo message bo'lsa o'chirib yangi text yuboradi.
+    """
+    try:
+        await query.edit_message_text(text, **kwargs)
+    except Exception as e:
+        if "no text" in str(e).lower() or "message to edit" in str(e).lower():
+            try:
+                await query.message.delete()
+            except Exception:
+                pass
+            await query.message.chat.send_message(text, **kwargs)
+        else:
+            raise
+
+
 async def handle_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
     Foydalanuvchi rasm yuborganda ishlaydigan asosiy handler.
@@ -279,7 +296,8 @@ async def handle_image_action_callback(
 
         elif data == "edit_menu":
             # Tahrirlash menyusini ko'rsatish
-            await query.edit_message_text(
+            await _safe_edit_text(
+                query,
                 t("edit_menu", lang),
                 reply_markup=get_edit_menu_keyboard(lang),
             )
@@ -585,7 +603,8 @@ async def handle_edit_callback(
     try:
         # Asosiy menyu ko'rsatish
         if data == "edit_menu":
-            await query.edit_message_text(
+            await _safe_edit_text(
+                query,
                 t("edit_menu", lang),
                 reply_markup=get_edit_menu_keyboard(lang),
             )
