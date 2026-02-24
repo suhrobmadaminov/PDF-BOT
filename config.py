@@ -4,11 +4,19 @@ Konfiguratsiya moduli — barcha sozlamalar markaziy boshqaruv.
 """
 
 import os
+import re
 from pathlib import Path
 from dotenv import load_dotenv
 
 # .env faylini yuklash
 load_dotenv()
+
+
+def _parse_int(env_key: str, default: int) -> int:
+    """Env var qiymatini int ga aylantiradi, noto'g'ri belgilarni tozalab."""
+    raw = os.getenv(env_key, "")
+    digits = re.sub(r"[^\d]", "", raw)
+    return int(digits) if digits else default
 
 # ── Bot asosiy sozlamalari ────────────────────────────────────────────────────
 
@@ -30,13 +38,13 @@ ADMIN_IDS: list[int] = [
 # ── Fayl cheklovlari ──────────────────────────────────────────────────────────
 
 # Maksimal fayl hajmi (bayt) — default 20MB
-MAX_FILE_SIZE: int = int(os.getenv("MAX_FILE_SIZE", str(20 * 1024 * 1024)))
+MAX_FILE_SIZE: int = _parse_int("MAX_FILE_SIZE", 20 * 1024 * 1024)
 
 # Bir sessiyada maksimal rasmlar soni
-MAX_IMAGES_PER_SESSION: int = int(os.getenv("MAX_IMAGES_PER_SESSION", "50"))
+MAX_IMAGES_PER_SESSION: int = _parse_int("MAX_IMAGES_PER_SESSION", 50)
 
 # Tarix necha kun saqlansin
-HISTORY_DAYS: int = int(os.getenv("HISTORY_DAYS", "7"))
+HISTORY_DAYS: int = _parse_int("HISTORY_DAYS", 7)
 
 # Telegram fayl yuklash limiti (50MB)
 TELEGRAM_MAX_FILE_SIZE: int = 50 * 1024 * 1024
