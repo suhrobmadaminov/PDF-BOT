@@ -670,6 +670,9 @@ async def handle_edit_callback(
             )
 
     except Exception as e:
+        err_str = str(e).lower()
+        if "not modified" in err_str or "message is not modified" in err_str:
+            return
         logger.error(f"handle_edit_callback xatosi: {e}")
         try:
             await query.edit_message_text(t("error_general", lang))

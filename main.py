@@ -190,10 +190,15 @@ async def error_handler(update: object, context) -> None:
     Global xato handler — barcha tutilmagan xatolar shu yerga keladi.
     """
     from telegram.error import (
-        BadRequest, Forbidden, NetworkError, TimedOut, TelegramError
+        BadRequest, Forbidden, NetworkError, TimedOut, TelegramError, Conflict
     )
 
     error = context.error
+
+    # Conflict — bir vaqtda ikki instance (deployment paytida odatiy)
+    if isinstance(error, Conflict):
+        logger.warning(f"Bot conflict (deployment): {error}")
+        return
 
     # Telegram xatolari (odatda muhim emas)
     if isinstance(error, (NetworkError, TimedOut)):
