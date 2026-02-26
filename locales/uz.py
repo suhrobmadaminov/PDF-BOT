@@ -325,6 +325,13 @@ UZ_TEXTS: dict[str, str] = {
 
     "welcome_back": "👋 Qaytganingiz bilan! Rasm yuboring yoki /help buyrug'ini kiriting.",
 
+    # ── Asosiy menyu tugmalari (ReplyKeyboard) ────────────────────────────────
+
+    "menu_btn_collect":    "📁 Ko'p rasm yig'ish",
+    "menu_btn_history":    "📋 Tarix",
+    "menu_btn_settings":   "⚙️ Sozlamalar",
+    "menu_btn_help":       "❓ Yordam",
+
     # ── Fayl nomi ────────────────────────────────────────────────────────────
 
     "default_pdf_name":    "converted_{timestamp}.pdf",

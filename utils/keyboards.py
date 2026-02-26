@@ -3,13 +3,43 @@ Tugmalar (Inline Keyboard) moduli — barcha inline klaviaturalar shu yerda.
 Har bir funksiya uchun alohida klaviatura factory funksiyasi mavjud.
 """
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 from locales import get_text
 
 
 def _t(key: str, lang: str, **kwargs) -> str:
     """Qisqa yordamchi — matn olish."""
     return get_text(key, lang, **kwargs)
+
+
+# ── Asosiy menyu (ReplyKeyboard) ─────────────────────────────────────────────
+
+def get_main_keyboard(lang: str) -> ReplyKeyboardMarkup:
+    """
+    Doim pastda ko'rinadigan asosiy navigatsiya klaviaturasi.
+
+    Args:
+        lang: Foydalanuvchi tili
+
+    Returns:
+        ReplyKeyboardMarkup
+    """
+    keyboard = [
+        [
+            KeyboardButton(_t("menu_btn_collect", lang)),
+            KeyboardButton(_t("menu_btn_history", lang)),
+        ],
+        [
+            KeyboardButton(_t("menu_btn_settings", lang)),
+            KeyboardButton(_t("menu_btn_help", lang)),
+        ],
+    ]
+    return ReplyKeyboardMarkup(
+        keyboard,
+        resize_keyboard=True,
+        persistent=True,
+        input_field_placeholder="Rasm yuboring yoki menyu tanlang...",
+    )
 
 
 # ── Rasm harakatlar klaviaturasi ──────────────────────────────────────────────

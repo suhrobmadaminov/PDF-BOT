@@ -316,6 +316,13 @@ RU_TEXTS: dict[str, str] = {
 
     "welcome_back": "👋 С возвращением! Отправьте изображение или /help.",
 
+    # ── Кнопки главного меню (ReplyKeyboard) ─────────────────────────────────
+
+    "menu_btn_collect":   "📁 Собрать несколько фото",
+    "menu_btn_history":   "📋 История",
+    "menu_btn_settings":  "⚙️ Настройки",
+    "menu_btn_help":      "❓ Помощь",
+
     "default_pdf_name":  "converted_{timestamp}.pdf",
     "ocr_pdf_name":      "ocr_{timestamp}.pdf",
     "multi_pdf_name":    "merged_{timestamp}.pdf",

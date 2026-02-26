@@ -22,6 +22,7 @@ from utils.keyboards import (
     get_image_actions_keyboard, get_edit_menu_keyboard,
     get_brightness_keyboard, get_contrast_keyboard,
     get_rotation_keyboard, get_after_edit_keyboard,
+    get_collect_done_keyboard,
 )
 from services.pdf_converter import PDFConverter
 from services.image_editor import ImageEditor
@@ -214,8 +215,10 @@ async def _add_to_collect(
         context.user_data["collect_images"] = collect_images
 
         count = len(collect_images)
+        keyboard = get_collect_done_keyboard(lang, count)
         await status_msg.edit_text(
-            t("collect_image_added", lang, count=count, total=count)
+            t("collect_image_added", lang, count=count, total=count),
+            reply_markup=keyboard,
         )
 
         logger.debug(f"Collect: user={user.id}, rasm_soni={count}")
@@ -312,6 +315,23 @@ async def handle_image_action_callback(
             from handlers.pdf_handler import _cancel_collect
             await _cancel_collect(update, context)
 
+        elif data == "collect_order":
+            # Tartib o'zgartirish haqida ma'lumot
+            collect_images = context.user_data.get("collect_images", [])
+            count = len(collect_images)
+            image_list = "\n".join(
+                f"  {i+1}. {Path(p).name}"
+                for i, p in enumerate(collect_images)
+            )
+            keyboard = get_collect_done_keyboard(lang, count)
+            await query.edit_message_text(
+                f"🔢 Tartibni o'zgartirish uchun quyidagi buyruqni yuboring:\n"
+                f"<code>/order 2,1,3</code>\n\n"
+                f"Joriy tartib:\n{image_list}",
+                reply_markup=keyboard,
+                parse_mode="HTML",
+            )
+
     except Exception as e:
         logger.error(f"handle_image_action_callback xatosi: {e}")
         try:
@@ -393,7 +413,6 @@ async def _make_pdf(
         # Telegram 50MB limitini tekshirish
         from config import TELEGRAM_MAX_FILE_SIZE
         if pdf_size > TELEGRAM_MAX_FILE_SIZE * 0.9:
-            from utils.helpers import format_file_size
             await query.edit_message_text(
                 t("pdf_too_large", lang, size=format_file_size(pdf_size))
             )
@@ -731,7 +750,7 @@ def get_image_handlers() -> list:
         # Rasm amallari callback lari
         CallbackQueryHandler(
             handle_image_action_callback,
-            pattern=r"^(pdf_make|pdf_compress|pdf_ocr|pdf_cancel|edit_menu|collect_done|collect_cancel)$",
+            pattern=r"^(pdf_make|pdf_compress|pdf_ocr|pdf_cancel|edit_menu|collect_done|collect_cancel|collect_order)$",
         ),
         # OCR callback lari
         CallbackQueryHandler(

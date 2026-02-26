@@ -316,6 +316,13 @@ EN_TEXTS: dict[str, str] = {
 
     "welcome_back": "👋 Welcome back! Send an image or type /help.",
 
+    # ── Main menu buttons (ReplyKeyboard) ────────────────────────────────────
+
+    "menu_btn_collect":   "📁 Collect images",
+    "menu_btn_history":   "📋 History",
+    "menu_btn_settings":  "⚙️ Settings",
+    "menu_btn_help":      "❓ Help",
+
     "default_pdf_name":  "converted_{timestamp}.pdf",
     "ocr_pdf_name":      "ocr_{timestamp}.pdf",
     "multi_pdf_name":    "merged_{timestamp}.pdf",

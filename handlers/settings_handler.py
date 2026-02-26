@@ -4,7 +4,7 @@ Sozlamalar Handler — PDF sifati, sahifa o'lchami, yo'nalish va chegara sozlama
 """
 
 from loguru import logger
-from telegram import Update
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes, CommandHandler, CallbackQueryHandler
 
 from utils.helpers import get_user_lang, t, check_rate_limit
@@ -13,6 +13,46 @@ from utils.keyboards import (
     get_orientation_keyboard, get_margin_keyboard,
 )
 from database import Database
+
+
+async def settings_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """
+    Umumiy sozlamalar menyusini ko'rsatish.
+    """
+    if not update.message or not update.effective_user:
+        return
+
+    user = update.effective_user
+    lang = await get_user_lang(user.id, context)
+    db: Database = context.bot_data.get("db")
+
+    settings = {"quality": "high", "pagesize": "A4", "orientation": "portrait", "margin": "small"}
+    if db:
+        user_settings = await db.get_settings(user.id)
+        settings.update(user_settings)
+
+    keyboard = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("🎚️ Sifat", callback_data="q_men"),
+            InlineKeyboardButton("📏 Sahifa", callback_data="ps_men"),
+        ],
+        [
+            InlineKeyboardButton("🔄 Yo'nalish", callback_data="or_men"),
+            InlineKeyboardButton("📐 Chegara", callback_data="mg_men"),
+        ],
+        [InlineKeyboardButton("❌ Yopish", callback_data="settings_close")],
+    ])
+
+    text = (
+        f"⚙️ <b>Sozlamalar</b>\n\n"
+        f"🎚️ Sifat: <b>{settings.get('quality', 'high')}</b>\n"
+        f"📏 Sahifa: <b>{settings.get('pagesize', 'A4')}</b>\n"
+        f"🔄 Yo'nalish: <b>{settings.get('orientation', 'portrait')}</b>\n"
+        f"📐 Chegara: <b>{settings.get('margin', 'small')}</b>\n\n"
+        f"O'zgartirish uchun tugmani bosing:"
+    )
+
+    await update.message.reply_html(text, reply_markup=keyboard)
 
 
 # ── Sifat sozlamalari ─────────────────────────────────────────────────────────
@@ -168,6 +208,47 @@ async def handle_settings_callback(
     db: Database = context.bot_data.get("db")
 
     try:
+        # ── Menyu tugmalari (settings_command dan ochilgan) ──
+        if data == "q_men":
+            settings = {}
+            if db:
+                settings = await db.get_settings(user.id)
+            await query.edit_message_text(
+                t("quality_select", lang),
+                reply_markup=get_quality_keyboard(lang, settings.get("quality", "high")),
+            )
+            return
+
+        elif data == "ps_men":
+            settings = {}
+            if db:
+                settings = await db.get_settings(user.id)
+            await query.edit_message_text(
+                t("pagesize_select", lang),
+                reply_markup=get_pagesize_keyboard(lang, settings.get("pagesize", "A4")),
+            )
+            return
+
+        elif data == "or_men":
+            settings = {}
+            if db:
+                settings = await db.get_settings(user.id)
+            await query.edit_message_text(
+                t("orientation_select", lang),
+                reply_markup=get_orientation_keyboard(lang, settings.get("orientation", "portrait")),
+            )
+            return
+
+        elif data == "mg_men":
+            settings = {}
+            if db:
+                settings = await db.get_settings(user.id)
+            await query.edit_message_text(
+                t("margin_select", lang),
+                reply_markup=get_margin_keyboard(lang, settings.get("margin", "small")),
+            )
+            return
+
         # ── Sifat tanlash ──
         if data.startswith("q_"):
             quality_map = {

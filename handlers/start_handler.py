@@ -3,13 +3,23 @@ Start va Help Handler — foydalanuvchilarni kutib olish va yo'riqnoma berish.
 /start, /help buyruqlari va yangi foydalanuvchilarni ma'lumotlar bazasiga qo'shish.
 """
 
+import re
+
 from loguru import logger
 from telegram import Update
-from telegram.ext import ContextTypes, CommandHandler
+from telegram.ext import ContextTypes, CommandHandler, MessageHandler, filters
 
 from utils.helpers import get_user_lang, get_user_info, t, is_admin, check_rate_limit
-from utils.keyboards import get_language_keyboard
+from utils.keyboards import get_language_keyboard, get_main_keyboard
 from database import Database
+
+# Barcha tillardagi menyu tugma matnlari (text routing uchun)
+_MENU_TEXTS = {
+    "collect":  {"📁 Ko'p rasm yig'ish", "📁 Собрать несколько фото", "📁 Collect images"},
+    "history":  {"📋 Tarix",             "📋 История",                "📋 History"},
+    "settings": {"⚙️ Sozlamalar",        "⚙️ Настройки",             "⚙️ Settings"},
+    "help":     {"❓ Yordam",            "❓ Помощь",                 "❓ Help"},
+}
 
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -52,7 +62,10 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         first_name = user.first_name or user.full_name
         welcome_text = t("welcome", lang, name=first_name)
 
-        await update.message.reply_html(welcome_text)
+        await update.message.reply_html(
+            welcome_text,
+            reply_markup=get_main_keyboard(lang),
+        )
 
         logger.info(f"Foydalanuvchi /start: {user.id} (@{user.username})")
 
@@ -166,6 +179,32 @@ async def handle_lang_callback(update: Update, context: ContextTypes.DEFAULT_TYP
             pass
 
 
+async def handle_menu_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """
+    Pastdagi ReplyKeyboard tugmalaridan kelgan matnlarni ushlab,
+    tegishli buyruqqa yo'naltirish.
+    """
+    if not update.message or not update.effective_user:
+        return
+
+    text = (update.message.text or "").strip()
+
+    if text in _MENU_TEXTS["collect"]:
+        from handlers.pdf_handler import collect_command
+        await collect_command(update, context)
+
+    elif text in _MENU_TEXTS["history"]:
+        from handlers.pdf_handler import history_command
+        await history_command(update, context)
+
+    elif text in _MENU_TEXTS["settings"]:
+        from handlers.settings_handler import settings_command
+        await settings_command(update, context)
+
+    elif text in _MENU_TEXTS["help"]:
+        await help_command(update, context)
+
+
 async def handle_close_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
     Xabarni yopish callback handleri ('close_msg', 'settings_close').
@@ -188,8 +227,20 @@ def get_start_handlers() -> list:
     Start va help handlerlarini ro'yxat sifatida qaytarish.
     main.py da handler qo'shish uchun ishlatiladi.
     """
+    # Barcha tillardagi menyu matnlari ro'yxati (filter uchun)
+    all_menu_texts = set()
+    for texts in _MENU_TEXTS.values():
+        all_menu_texts.update(texts)
+
     return [
         CommandHandler("start", start_command),
         CommandHandler("help",  help_command),
         CommandHandler("lang",  lang_command),
+        # ReplyKeyboard tugmalaridan kelgan matnlarni ushlash
+        MessageHandler(
+            filters.TEXT & ~filters.COMMAND & filters.Regex(
+                "^(" + "|".join(re.escape(btn) for btn in all_menu_texts) + ")$"
+            ),
+            handle_menu_text,
+        ),
     ]
