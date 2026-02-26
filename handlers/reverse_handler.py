@@ -218,17 +218,19 @@ async def handle_reverse_callback(
     context.user_data[REVERSE_FORMAT] = out_format
     context.user_data["reverse_use_zip"] = use_zip
 
-    # Sahifa oralig'ini so'rash
+    # Barcha sahifalarni darhol konvertatsiya qilish (sahifa so'rovini skip qilish)
     total_pages = context.user_data.get(REVERSE_TOTAL_PAGES, 1)
+    page_indices = list(range(total_pages))
 
-    await query.edit_message_text(
-        t("reverse_page_range", lang)
-        + f"\n\n📃 Jami sahifalar: {total_pages}",
-        parse_mode="HTML",
+    # Keyboard xabarini o'chirish
+    try:
+        await query.delete_message()
+    except Exception:
+        pass
+
+    await _do_reverse_conversion(
+        update, context, pdf_path, page_indices, lang, db
     )
-
-    # State ni yozish
-    context.user_data[WAITING_PAGE_RANGE] = True
 
 
 async def handle_page_range_input(
@@ -416,10 +418,5 @@ def get_reverse_handlers() -> list:
         CallbackQueryHandler(
             handle_reverse_callback,
             pattern=r"^rev_(jpg|png|zip|cancel)$",
-        ),
-        # Sahifa oralig'i kiritish (matn xabari, lekin shartli)
-        MessageHandler(
-            filters.TEXT & ~filters.COMMAND,
-            handle_page_range_input,
         ),
     ]
