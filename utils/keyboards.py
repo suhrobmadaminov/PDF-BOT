@@ -3,7 +3,7 @@ Tugmalar (Inline Keyboard) moduli — barcha inline klaviaturalar shu yerda.
 Har bir funksiya uchun alohida klaviatura factory funksiyasi mavjud.
 """
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from locales import get_text
 
 
@@ -12,34 +12,29 @@ def _t(key: str, lang: str, **kwargs) -> str:
     return get_text(key, lang, **kwargs)
 
 
-# ── Asosiy menyu (ReplyKeyboard) ─────────────────────────────────────────────
+# ── Asosiy menyu (Inline) ─────────────────────────────────────────────────────
 
-def get_main_keyboard(lang: str) -> ReplyKeyboardMarkup:
+def get_main_keyboard(lang: str) -> InlineKeyboardMarkup:
     """
-    Doim pastda ko'rinadigan asosiy navigatsiya klaviaturasi.
+    Xush kelibsiz xabarga biriktirilgan asosiy navigatsiya klaviaturasi.
 
     Args:
         lang: Foydalanuvchi tili
 
     Returns:
-        ReplyKeyboardMarkup
+        InlineKeyboardMarkup
     """
     keyboard = [
         [
-            KeyboardButton(_t("menu_btn_collect", lang)),
-            KeyboardButton(_t("menu_btn_history", lang)),
+            InlineKeyboardButton(_t("menu_btn_collect", lang),  callback_data="menu_collect"),
+            InlineKeyboardButton(_t("menu_btn_history", lang),  callback_data="menu_history"),
         ],
         [
-            KeyboardButton(_t("menu_btn_settings", lang)),
-            KeyboardButton(_t("menu_btn_help", lang)),
+            InlineKeyboardButton(_t("menu_btn_settings", lang), callback_data="menu_settings"),
+            InlineKeyboardButton(_t("menu_btn_help", lang),     callback_data="menu_help"),
         ],
     ]
-    return ReplyKeyboardMarkup(
-        keyboard,
-        resize_keyboard=True,
-        persistent=True,
-        input_field_placeholder="Rasm yuboring yoki menyu tanlang...",
-    )
+    return InlineKeyboardMarkup(keyboard)
 
 
 # ── Rasm harakatlar klaviaturasi ──────────────────────────────────────────────

@@ -3,23 +3,13 @@ Start va Help Handler — foydalanuvchilarni kutib olish va yo'riqnoma berish.
 /start, /help buyruqlari va yangi foydalanuvchilarni ma'lumotlar bazasiga qo'shish.
 """
 
-import re
-
 from loguru import logger
-from telegram import Update
-from telegram.ext import ContextTypes, CommandHandler, MessageHandler, filters
+from telegram import Update, ReplyKeyboardRemove
+from telegram.ext import ContextTypes, CommandHandler, CallbackQueryHandler
 
 from utils.helpers import get_user_lang, get_user_info, t, is_admin, check_rate_limit
 from utils.keyboards import get_language_keyboard, get_main_keyboard
 from database import Database
-
-# Barcha tillardagi menyu tugma matnlari (text routing uchun)
-_MENU_TEXTS = {
-    "collect":  {"📁 Ko'p rasm yig'ish", "📁 Собрать несколько фото", "📁 Collect images"},
-    "history":  {"📋 Tarix",             "📋 История",                "📋 History"},
-    "settings": {"⚙️ Sozlamalar",        "⚙️ Настройки",             "⚙️ Settings"},
-    "help":     {"❓ Yordam",            "❓ Помощь",                 "❓ Help"},
-}
 
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -58,7 +48,16 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         else:
             lang = "uz"
 
-        # Xush kelibsiz xabar yuborish
+        # Eski persistent klaviaturani olib tashlash
+        rm_msg = await update.message.reply_text(
+            "\u200b", reply_markup=ReplyKeyboardRemove()
+        )
+        try:
+            await rm_msg.delete()
+        except Exception:
+            pass
+
+        # Xush kelibsiz xabar yuborish (inline keyboard bilan)
         first_name = user.first_name or user.full_name
         welcome_text = t("welcome", lang, name=first_name)
 
@@ -179,30 +178,133 @@ async def handle_lang_callback(update: Update, context: ContextTypes.DEFAULT_TYP
             pass
 
 
-async def handle_menu_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def handle_menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """
-    Pastdagi ReplyKeyboard tugmalaridan kelgan matnlarni ushlab,
-    tegishli buyruqqa yo'naltirish.
+    Asosiy menyu inline tugmalari callback handleri.
+    menu_collect, menu_history, menu_settings, menu_help
+
+    Eslatma: callback query da update.message = None, shuning uchun
+    barcha xabarlar update.effective_chat.send_message() orqali yuboriladi.
     """
-    if not update.message or not update.effective_user:
+    query = update.callback_query
+    if not query or not update.effective_user:
         return
 
-    text = (update.message.text or "").strip()
+    await query.answer()
+    user = update.effective_user
+    data = query.data
+    lang = await get_user_lang(user.id, context)
+    db: Database = context.bot_data.get("db")
 
-    if text in _MENU_TEXTS["collect"]:
-        from handlers.pdf_handler import collect_command
-        await collect_command(update, context)
+    # Menyu xabarini o'chirish
+    try:
+        await query.delete_message()
+    except Exception:
+        pass
 
-    elif text in _MENU_TEXTS["history"]:
-        from handlers.pdf_handler import history_command
-        await history_command(update, context)
+    try:
+        if data == "menu_collect":
+            # Collect rejimini boshlash
+            from config import MAX_IMAGES_PER_SESSION
 
-    elif text in _MENU_TEXTS["settings"]:
-        from handlers.settings_handler import settings_command
-        await settings_command(update, context)
+            if context.user_data.get("collect_mode"):
+                count = len(context.user_data.get("collect_images", []))
+                from utils.keyboards import get_collect_done_keyboard
+                keyboard = get_collect_done_keyboard(lang, count) if count > 0 else None
+                await update.effective_chat.send_message(
+                    t("collect_already_active", lang),
+                    reply_markup=keyboard,
+                )
+                return
 
-    elif text in _MENU_TEXTS["help"]:
-        await help_command(update, context)
+            context.user_data["collect_mode"] = True
+            context.user_data["collect_images"] = []
+
+            if db:
+                await db.create_session(user.id, mode="collecting")
+
+            await update.effective_chat.send_message(
+                t("collect_started", lang, max_images=MAX_IMAGES_PER_SESSION),
+                parse_mode="HTML",
+            )
+
+        elif data == "menu_history":
+            # Tarix ko'rsatish
+            if not db:
+                await update.effective_chat.send_message(t("error_general", lang))
+                return
+
+            if await db.is_banned(user.id):
+                await update.effective_chat.send_message(t("error_banned", lang))
+                return
+
+            history = await db.get_history(user.id)
+
+            if not history:
+                await update.effective_chat.send_message(t("history_empty", lang))
+                return
+
+            from utils.helpers import format_file_size, format_datetime
+            from utils.keyboards import get_history_keyboard
+            text = t("history_title", lang) + "\n\n"
+            for item in history:
+                text += t(
+                    "history_item", lang,
+                    name=item.get("file_name", "document.pdf"),
+                    size=format_file_size(item.get("file_size", 0)),
+                    date=format_datetime(item.get("created_at")),
+                    pages=item.get("pages", 1),
+                ) + "\n"
+
+            keyboard = get_history_keyboard(history, lang)
+            await update.effective_chat.send_message(
+                text, reply_markup=keyboard, parse_mode="HTML"
+            )
+
+        elif data == "menu_settings":
+            # Sozlamalar ko'rsatish
+            from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+            settings = {"quality": "high", "pagesize": "A4",
+                        "orientation": "portrait", "margin": "small"}
+            if db:
+                user_settings = await db.get_settings(user.id)
+                settings.update(user_settings)
+
+            keyboard = InlineKeyboardMarkup([
+                [
+                    InlineKeyboardButton("🎚️ Sifat",    callback_data="q_men"),
+                    InlineKeyboardButton("📏 Sahifa",   callback_data="ps_men"),
+                ],
+                [
+                    InlineKeyboardButton("🔄 Yo'nalish", callback_data="or_men"),
+                    InlineKeyboardButton("📐 Chegara",  callback_data="mg_men"),
+                ],
+                [InlineKeyboardButton("❌ Yopish", callback_data="settings_close")],
+            ])
+            text = (
+                f"⚙️ <b>Sozlamalar</b>\n\n"
+                f"🎚️ Sifat: <b>{settings.get('quality', 'high')}</b>\n"
+                f"📏 Sahifa: <b>{settings.get('pagesize', 'A4')}</b>\n"
+                f"🔄 Yo'nalish: <b>{settings.get('orientation', 'portrait')}</b>\n"
+                f"📐 Chegara: <b>{settings.get('margin', 'small')}</b>\n\n"
+                f"O'zgartirish uchun tugmani bosing:"
+            )
+            await update.effective_chat.send_message(
+                text, reply_markup=keyboard, parse_mode="HTML"
+            )
+
+        elif data == "menu_help":
+            # Yordam ko'rsatish
+            await update.effective_chat.send_message(
+                t("help", lang), parse_mode="HTML"
+            )
+
+    except Exception as e:
+        logger.error(f"handle_menu_callback xatosi: {e}")
+        try:
+            await update.effective_chat.send_message(t("error_general", lang))
+        except Exception:
+            pass
 
 
 async def handle_close_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -227,20 +329,13 @@ def get_start_handlers() -> list:
     Start va help handlerlarini ro'yxat sifatida qaytarish.
     main.py da handler qo'shish uchun ishlatiladi.
     """
-    # Barcha tillardagi menyu matnlari ro'yxati (filter uchun)
-    all_menu_texts = set()
-    for texts in _MENU_TEXTS.values():
-        all_menu_texts.update(texts)
-
     return [
         CommandHandler("start", start_command),
         CommandHandler("help",  help_command),
         CommandHandler("lang",  lang_command),
-        # ReplyKeyboard tugmalaridan kelgan matnlarni ushlash
-        MessageHandler(
-            filters.TEXT & ~filters.COMMAND & filters.Regex(
-                "^(" + "|".join(re.escape(btn) for btn in all_menu_texts) + ")$"
-            ),
-            handle_menu_text,
+        # Asosiy menyu inline callback lari
+        CallbackQueryHandler(
+            handle_menu_callback,
+            pattern=r"^menu_(collect|history|settings|help)$",
         ),
     ]

@@ -249,6 +249,13 @@ EN_TEXTS: dict[str, str] = {
     "error_download":   "❌ Error downloading file.",
     "error_not_image":  "❌ This is not an image. Please send an image.",
     "error_not_pdf":    "❌ This is not a PDF. Please send a PDF file.",
+    "error_unsupported_file": (
+        "❌ <b>This file format is not supported.</b>\n\n"
+        "📌 The bot only accepts:\n"
+        "• 🖼️ Images: JPG, PNG, WEBP, BMP, TIFF, HEIC\n"
+        "• 📄 PDF files (for /reverse command)\n\n"
+        "Send an image to create a PDF."
+    ),
 
     # ── Admin panel ───────────────────────────────────────────────────────────
 

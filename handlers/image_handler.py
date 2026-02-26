@@ -737,6 +737,23 @@ async def _send_edit_preview(
         logger.error(f"_send_edit_preview xatosi: {e}")
 
 
+async def handle_unsupported_document(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE,
+) -> None:
+    """
+    PDF va rasm bo'lmagan hujjatlar uchun aniq xato xabari.
+    Masalan: .pptx, .docx, .xlsx, .zip va boshqalar.
+    """
+    if not update.message or not update.effective_user:
+        return
+
+    user = update.effective_user
+    lang = await get_user_lang(user.id, context)
+
+    await update.message.reply_html(t("error_unsupported_file", lang))
+
+
 def get_image_handlers() -> list:
     """
     Rasm va tahrirlash handlerlarini ro'yxat sifatida qaytarish.
@@ -761,5 +778,10 @@ def get_image_handlers() -> list:
         CallbackQueryHandler(
             handle_edit_callback,
             pattern=r"^ed_(bri|con|rot|gray|sharp|a4|reset|done|back).*$",
+        ),
+        # Qo'llab-quvvatlanmaydigan hujjatlar (PDF va rasm emas)
+        MessageHandler(
+            filters.Document.ALL & ~filters.Document.IMAGE & ~filters.Document.PDF,
+            handle_unsupported_document,
         ),
     ]

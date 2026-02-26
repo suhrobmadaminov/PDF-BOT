@@ -254,6 +254,13 @@ UZ_TEXTS: dict[str, str] = {
     "error_download": "❌ Faylni yuklab olishda xatolik.",
     "error_not_image": "❌ Bu rasm emas. Iltimos rasm yuboring.",
     "error_not_pdf":   "❌ Bu PDF emas. Iltimos PDF fayl yuboring.",
+    "error_unsupported_file": (
+        "❌ <b>Bu fayl formati qo'llab-quvvatlanmaydi.</b>\n\n"
+        "📌 Bot faqat quyidagilarni qabul qiladi:\n"
+        "• 🖼️ Rasmlar: JPG, PNG, WEBP, BMP, TIFF, HEIC\n"
+        "• 📄 PDF fayllar (/reverse buyrug'i uchun)\n\n"
+        "PDF yaratish uchun rasm yuboring."
+    ),
 
     # ── Admin panel ──────────────────────────────────────────────────────────
 
