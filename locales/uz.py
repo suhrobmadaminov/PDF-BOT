@@ -50,7 +50,7 @@ UZ_TEXTS: dict[str, str] = {
 
     # ── Rasm qabul qilish ────────────────────────────────────────────────────
 
-    "image_received": "📥 Rasm qabul olindi! Nima qilishni tanlang:",
+    "image_received": "📥 Rasm qabul qilindi! Nima qilishni tanlang:",
     "image_actions_caption": "🖼️ <b>Rasm:</b> {filename}\n📦 <b>Hajmi:</b> {size}",
 
     # Rasm harakatlar klaviaturasi
@@ -69,7 +69,7 @@ UZ_TEXTS: dict[str, str] = {
         "✅ Tugatish: /done\n"
         "❌ Bekor qilish: /cancel"
     ),
-    "collect_image_added":   "✅ {count}-rasm qabul olindi. Jami: {total} ta",
+    "collect_image_added":   "✅ {count}-rasm qabul qilindi. Jami: {total} ta",
     "collect_max_reached":   "⚠️ Maksimal rasm soni ({max}) ga yetdingiz. /done yuboring.",
     "collect_no_images":     "❌ Hali rasm yuklanmagan. Avval rasm yuboring.",
     "collect_done_creating": "⏳ PDF yaratilmoqda... [{bar}] {percent}%",
@@ -120,7 +120,7 @@ UZ_TEXTS: dict[str, str] = {
     "ocr_success": (
         "✅ <b>OCR muvaffaqiyatli!</b>\n\n"
         "🔤 Aniqlangan belgilar: <b>{chars}</b>\n"
-        "📄 PDF qidiriladigan"
+        "📄 Qidiruvchan PDF yaratildi"
     ),
     "ocr_no_text":         "⚠️ Rasmda matn topilmadi. Oddiy PDF yaratildi.",
     "ocr_error":           "❌ OCR xatolik: {error}",
@@ -136,6 +136,7 @@ UZ_TEXTS: dict[str, str] = {
     "edit_done":           "✅ Tahrirlash tugadi!",
     "edit_reset":          "🔄 Rasm asl holatiga qaytarildi",
     "edit_no_image":       "❌ Tahrirlash uchun rasm yo'q.",
+    "edit_rotation":       "🔄 Aylantirish burchagini tanlang:",
 
     "btn_brightness":   "☀️ Yorqinlik",
     "btn_contrast":     "🌑 Kontrast",
@@ -235,7 +236,7 @@ UZ_TEXTS: dict[str, str] = {
     "error_invalid_format": (
         "❌ <b>Noto'g'ri format!</b>\n\n"
         "Bu format qo'llab-quvvatlanmaydi.\n"
-        "Iltimos quyidagi formatlardan birini yuboring:\n"
+        "Iltimos, quyidagi formatlardan birini yuboring:\n"
         "📎 JPG, JPEG, PNG, WEBP, BMP, TIFF, HEIC"
     ),
     "error_file_too_large": (
@@ -252,8 +253,9 @@ UZ_TEXTS: dict[str, str] = {
     "error_general": "❌ Xatolik yuz berdi. Qayta urinib ko'ring: /start",
     "error_pdf_send": "❌ PDF yuborishda xatolik yuz berdi.",
     "error_download": "❌ Faylni yuklab olishda xatolik.",
-    "error_not_image": "❌ Bu rasm emas. Iltimos rasm yuboring.",
-    "error_not_pdf":   "❌ Bu PDF emas. Iltimos PDF fayl yuboring.",
+    "error_not_image": "❌ Bu rasm emas. Iltimos, rasm yuboring.",
+    "error_not_pdf":   "❌ Bu PDF emas. Iltimos, PDF fayl yuboring.",
+    "action_cancelled": "❌ Bekor qilindi.",
     "error_unsupported_file": (
         "❌ <b>Bu fayl formati qo'llab-quvvatlanmaydi.</b>\n\n"
         "📌 Bot faqat quyidagilarni qabul qiladi:\n"

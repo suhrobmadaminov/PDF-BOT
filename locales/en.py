@@ -134,6 +134,7 @@ EN_TEXTS: dict[str, str] = {
     "edit_done":       "✅ Editing complete!",
     "edit_reset":      "🔄 Image reset to original",
     "edit_no_image":   "❌ No image to edit.",
+    "edit_rotation":   "🔄 Choose rotation angle:",
 
     "btn_brightness":  "☀️ Brightness",
     "btn_contrast":    "🌑 Contrast",
@@ -249,6 +250,7 @@ EN_TEXTS: dict[str, str] = {
     "error_download":   "❌ Error downloading file.",
     "error_not_image":  "❌ This is not an image. Please send an image.",
     "error_not_pdf":    "❌ This is not a PDF. Please send a PDF file.",
+    "action_cancelled": "❌ Cancelled.",
     "error_unsupported_file": (
         "❌ <b>This file format is not supported.</b>\n\n"
         "📌 The bot only accepts:\n"

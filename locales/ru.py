@@ -134,6 +134,7 @@ RU_TEXTS: dict[str, str] = {
     "edit_done":       "✅ Редактирование завершено!",
     "edit_reset":      "🔄 Изображение сброшено",
     "edit_no_image":   "❌ Нет изображения для редактирования.",
+    "edit_rotation":   "🔄 Выберите угол поворота:",
 
     "btn_brightness":  "☀️ Яркость",
     "btn_contrast":    "🌑 Контраст",
@@ -249,6 +250,7 @@ RU_TEXTS: dict[str, str] = {
     "error_download":    "❌ Ошибка загрузки файла.",
     "error_not_image":   "❌ Это не изображение. Отправьте изображение.",
     "error_not_pdf":     "❌ Это не PDF. Отправьте PDF файл.",
+    "action_cancelled":  "❌ Отменено.",
     "error_unsupported_file": (
         "❌ <b>Этот формат файла не поддерживается.</b>\n\n"
         "📌 Бот принимает только:\n"

@@ -197,7 +197,7 @@ async def handle_reverse_callback(
         if pdf_path:
             await cleanup_file(pdf_path)
 
-        await query.edit_message_text("❌ Bekor qilindi.")
+        await query.edit_message_text(t("action_cancelled", lang))
         return
 
     # PDF yo'lini tekshirish

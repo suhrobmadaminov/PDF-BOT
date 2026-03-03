@@ -267,7 +267,7 @@ async def handle_image_action_callback(
     try:
         if data == "pdf_cancel":
             # Bekor qilish
-            await query.edit_message_text("❌ Bekor qilindi.")
+            await query.edit_message_text(t("action_cancelled", lang))
             if current_image:
                 await cleanup_file(current_image.get("original_path"))
                 edit_session = context.user_data.get("edit_session", {})
@@ -498,7 +498,7 @@ async def handle_ocr_callback(
         return
 
     if data == "ocr_cancel":
-        await query.edit_message_text("❌ Bekor qilindi.")
+        await query.edit_message_text(t("action_cancelled", lang))
         return
 
     # Til kodi (ocr_uz → uz)
@@ -647,7 +647,7 @@ async def handle_edit_callback(
         if data == "ed_rot_menu":
             from utils.keyboards import get_rotation_keyboard
             await query.edit_message_text(
-                "🔄 Aylantirish burchagini tanlang:",
+                t("edit_rotation", lang),
                 reply_markup=get_rotation_keyboard(lang),
             )
             return
