@@ -50,7 +50,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
         # Eski persistent klaviaturani olib tashlash
         rm_msg = await update.message.reply_text(
-            "\u200b", reply_markup=ReplyKeyboardRemove()
+            ".", reply_markup=ReplyKeyboardRemove()
         )
         try:
             await rm_msg.delete()
