@@ -222,7 +222,7 @@ class PDFConverter:
 
         except Exception as e:
             logger.error(f"_prepare_image_sync xatosi ({image_path}): {e}")
-            return str(image_path)  # Asl faylni qaytarish
+            return None  # Xato — rasmni qayta ishlash imkonsiz
 
     @staticmethod
     def _fix_exif_orientation(img: Image.Image) -> Image.Image:

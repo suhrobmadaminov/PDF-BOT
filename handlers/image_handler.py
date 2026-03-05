@@ -131,6 +131,24 @@ async def handle_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         actual_size = local_path.stat().st_size if local_path.exists() else 0
         logger.info(f"Rasm yuklandi: {local_path.name}, {actual_size:,} bayt")
 
+        # Juda kichik fayl — buzuq yoki noto'g'ri format
+        if actual_size < 1024:
+            logger.warning(f"Juda kichik rasm: {actual_size} bayt, o'chirildi")
+            await cleanup_file(local_path)
+            await status_msg.edit_text(t("error_invalid_format", lang))
+            return
+
+        # Pillow bilan rasmni tekshirish
+        try:
+            from PIL import Image as PILImage
+            with PILImage.open(str(local_path)) as test_img:
+                test_img.verify()
+        except Exception:
+            logger.warning(f"Buzuq rasm aniqlandi: {local_path.name}")
+            await cleanup_file(local_path)
+            await status_msg.edit_text(t("error_invalid_format", lang))
+            return
+
         # Ko'p rasm yig'ish rejimini tekshirish
         if context.user_data.get("collect_mode"):
             await _add_to_collect(
@@ -369,16 +387,16 @@ async def _make_pdf(
 
         # Progress xabari
         if compress:
-            await query.edit_message_text(t("pdf_compressing", lang))
+            await _safe_edit_text(query, t("pdf_compressing", lang))
         else:
-            await query.edit_message_text(t("pdf_creating", lang))
+            await _safe_edit_text(query, t("pdf_creating", lang))
 
         # Rasm yo'li — edit sessiyasidan olish (tahrirlangan bo'lsa)
         edit_session = context.user_data.get("edit_session", {})
         image_path = edit_session.get("work_path") or current_image.get("original_path")
 
         if not image_path or not Path(image_path).exists():
-            await query.edit_message_text(t("error_general", lang))
+            await _safe_edit_text(query, t("error_general", lang))
             return
 
         # PDF yaratish
@@ -389,7 +407,7 @@ async def _make_pdf(
         )
 
         if not success:
-            await query.edit_message_text(t("pdf_error", lang))
+            await _safe_edit_text(query, t("pdf_error", lang))
             return
 
         original_size = Path(image_path).stat().st_size
@@ -413,8 +431,8 @@ async def _make_pdf(
         # Telegram 50MB limitini tekshirish
         from config import TELEGRAM_MAX_FILE_SIZE
         if pdf_size > TELEGRAM_MAX_FILE_SIZE * 0.9:
-            await query.edit_message_text(
-                t("pdf_too_large", lang, size=format_file_size(pdf_size))
+            await _safe_edit_text(
+                query, t("pdf_too_large", lang, size=format_file_size(pdf_size))
             )
             await cleanup_file(output_path)
             return
@@ -422,7 +440,7 @@ async def _make_pdf(
         # PDF ni yuborish
         page_count = await PDFConverter.get_pdf_page_count(output_path)
 
-        await query.edit_message_text(t("progress_sending", lang))
+        await _safe_edit_text(query, t("progress_sending", lang))
 
         with open(output_path, "rb") as pdf_file:
             sent_doc = await update.effective_chat.send_document(
@@ -467,7 +485,7 @@ async def _make_pdf(
     except Exception as e:
         logger.error(f"_make_pdf xatosi: {e}")
         try:
-            await query.edit_message_text(t("pdf_error", lang))
+            await _safe_edit_text(query, t("pdf_error", lang))
         except Exception:
             pass
 
@@ -513,7 +531,7 @@ async def handle_ocr_callback(
             await db.update_settings(user.id, ocr_lang=ocr_lang)
 
         # OCR PDF yaratish
-        await query.edit_message_text(t("ocr_creating", lang))
+        await _safe_edit_text(query, t("ocr_creating", lang))
 
         from services.ocr_service import OCRService
 
@@ -531,7 +549,7 @@ async def handle_ocr_callback(
         )
 
         if not success:
-            await query.edit_message_text(t("ocr_error", lang, error="PDF yaratilmadi"))
+            await _safe_edit_text(query, t("ocr_error", lang, error="PDF yaratilmadi"))
             return
 
         pdf_size = output_path.stat().st_size
@@ -543,7 +561,7 @@ async def handle_ocr_callback(
         else:
             caption = t("ocr_no_text", lang)
 
-        await query.edit_message_text(t("progress_sending", lang))
+        await _safe_edit_text(query, t("progress_sending", lang))
 
         with open(output_path, "rb") as pdf_file:
             sent_doc = await update.effective_chat.send_document(
@@ -582,7 +600,7 @@ async def handle_ocr_callback(
     except Exception as e:
         logger.error(f"handle_ocr_callback xatosi: {e}")
         try:
-            await query.edit_message_text(t("ocr_error", lang, error=str(e)))
+            await _safe_edit_text(query, t("ocr_error", lang, error=str(e)))
         except Exception:
             pass
 

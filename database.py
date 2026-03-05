@@ -645,6 +645,16 @@ class Database:
             return
 
         try:
+            # Avval users jadvalida mavjudligini ta'minlash (FOREIGN KEY uchun)
+            now = datetime.utcnow().isoformat()
+            await self._conn.execute(
+                """
+                INSERT OR IGNORE INTO users (user_id, username, full_name, joined_at, last_active)
+                VALUES (?, NULL, '', ?, ?)
+                """,
+                (user_id, now, now),
+            )
+
             # Avval mavjudligini tekshirish va yaratish
             await self._conn.execute(
                 """

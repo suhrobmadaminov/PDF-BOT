@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l:*)",
+      "Bash(python -c:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(git init:*)",
+      "Bash(git commit:*)",
+      "Bash(gh auth status:*)",
+      "Bash(git push:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\hp\\Desktop\\Pdf bot"
+    ]
+  }
+}

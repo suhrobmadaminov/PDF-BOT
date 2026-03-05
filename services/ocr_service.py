@@ -56,7 +56,7 @@ class OCRService:
                 cls._easyocr_readers[lang_code] = reader
                 logger.info(f"easyocr reader yaratildi: {ocr_langs}")
             except Exception as e:
-                logger.error(f"easyocr reader yaratishda xato: {e}")
+                logger.debug(f"easyocr mavjud emas, faqat tesseract ishlatiladi: {e}")
                 return None
         return cls._easyocr_readers.get(lang_code)
 
