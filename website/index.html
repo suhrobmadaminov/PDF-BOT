@@ -204,6 +204,8 @@
                         <span class="tag">WEBP</span>
                         <span class="tag">HEIC</span>
                     </div>
+                    <a href="#converter" class="btn btn--sm btn--outline" style="margin-top: 1.5rem; width: 100%;">🌐
+                        Onlayn Sinab Ko'rish</a>
                 </div>
 
                 <!-- Feature 2 -->
@@ -218,6 +220,8 @@
                         <span class="tag">50 ta rasm</span>
                         <span class="tag">Birlashtirish</span>
                     </div>
+                    <a href="#converter" class="btn btn--sm btn--outline" style="margin-top: 1.5rem; width: 100%;">📚
+                        Birlashtirish</a>
                 </div>
 
                 <!-- Feature 3 -->
@@ -234,6 +238,8 @@
                         <span class="tag">🇬🇧 Ingliz</span>
                         <span class="tag">🇸🇦 Arab</span>
                     </div>
+                    <a href="#converter" class="btn btn--sm btn--outline" style="margin-top: 1.5rem; width: 100%;">🔍
+                        Matnni Aniqlash</a>
                 </div>
 
                 <!-- Feature 4 -->
@@ -361,6 +367,99 @@
                         <span class="tag">Cloud Native</span>
                         <span class="tag">Uptime</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  WEB CONVERTER (NEW FUNCTIONAL SECTION)     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="converter" id="converter">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Onlayn <span class="text-gradient">Konvertatsiya</span></h2>
+                <p class="section-subtitle">Fayllarni to'g'ridan-to'g'ri brauzerda qayta ishlang — tez va xavfsiz</p>
+            </div>
+
+            <div class="converter__box reveal">
+                <!-- Dropzone -->
+                <div class="dropzone" id="dropzone">
+                    <input type="file" id="fileInput" multiple hidden accept="image/*">
+                    <span class="dropzone__icon">🚀</span>
+                    <h3 class="dropzone__title">Fayllarni shu yerga tashlang</h3>
+                    <p class="dropzone__desc">Yoki kompyuterdan tanlash uchun bosing (Max 50MB)</p>
+                    <div id="fileList" style="margin-top: 1rem; font-size: 0.85rem; color: var(--primary-light);"></div>
+                </div>
+
+                <!-- Options -->
+                <div class="converter__options">
+                    <div class="option-group">
+                        <label class="option-group__label">Amal (Mode)</label>
+                        <select class="select-custom" id="modeSelect">
+                            <option value="convert">🖼️ Rasmlarni PDF ga</option>
+                            <option value="ocr">🔍 Matnni aniqlash (OCR)</option>
+                            <option value="compress">🗜️ PDF hajmini kamaytirish</option>
+                            <option value="edit">✏️ Rasmni tahrirlash</option>
+                        </select>
+                    </div>
+                    <div class="option-group" id="qualityGroup">
+                        <label class="option-group__label">Sifat</label>
+                        <select class="select-custom" id="qualitySelect">
+                            <option value="high">Yuqori (High)</option>
+                            <option value="medium">O'rta (Medium)</option>
+                            <option value="low">Past (Low)</option>
+                            <option value="best">Eng zo'r (Best)</option>
+                        </select>
+                    </div>
+                    <div class="option-group" id="pageSizeGroup">
+                        <label class="option-group__label">Sahifa O'lchami</label>
+                        <select class="select-custom" id="pageSizeSelect">
+                            <option value="A4">A4</option>
+                            <option value="A5">A5</option>
+                            <option value="A3">A3</option>
+                            <option value="Original">Asl o'lcham</option>
+                        </select>
+                    </div>
+                    <div class="option-group" id="ocrLangGroup" style="display: none;">
+                        <label class="option-group__label">OCR Til</label>
+                        <select class="select-custom" id="ocrSelect">
+                            <option value="uz">🇺🇿 O'zbek</option>
+                            <option value="en">🇬🇧 English</option>
+                            <option value="ru">🇷🇺 Русский</option>
+                        </select>
+                    </div>
+                    <div class="option-group" id="editActionGroup" style="display: none;">
+                        <label class="option-group__label">Tahrirlash</label>
+                        <select class="select-custom" id="editActionSelect">
+                            <option value="ed_bri_p25">Yorqinlik +25%</option>
+                            <option value="ed_con_hi">Kontrast yuqori</option>
+                            <option value="ed_gray">Qora-oq</option>
+                            <option value="ed_rot_90">90° o'ngga</option>
+                            <option value="ed_sharp">Keskinlashtirish</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Action -->
+                <div class="converter__action">
+                    <button class="btn btn--xl btn--primary" id="convertBtn">
+                        <span id="btnText">Konvertatsiya qilish</span>
+                    </button>
+
+                    <div class="progress" id="progressBar">
+                        <div class="progress__bar" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="result-card" id="resultCard">
+                    <div class="result-card__icon">🎉</div>
+                    <div class="result-card__info">
+                        <h4 class="result-card__title">Tayyor! Fayl muvaffaqiyatli yaratildi</h4>
+                        <p class="result-card__meta" id="resultMeta">Fayl nomi: output.pdf</p>
+                    </div>
+                    <a href="#" class="btn btn--primary" id="downloadBtn" download>Yuklab olish</a>
                 </div>
             </div>
         </div>

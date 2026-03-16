@@ -240,6 +240,187 @@
         });
     }
 
+    // ── Web Converter Logic ──────────────────────────────────────────────────
+
+    function initConverter() {
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const convertBtn = document.getElementById('convertBtn');
+        const btnText = document.getElementById('btnText');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const resultCard = document.getElementById('resultCard');
+        const resultMeta = document.getElementById('resultMeta');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        const modeSelect = document.getElementById('modeSelect');
+        const qualityGroup = document.getElementById('qualityGroup');
+        const pageSizeGroup = document.getElementById('pageSizeGroup');
+        const ocrLangGroup = document.getElementById('ocrLangGroup');
+        const editActionGroup = document.getElementById('editActionGroup');
+
+        if (!dropzone || !fileInput || !convertBtn) return;
+
+        let selectedFiles = [];
+
+        // Mode Change Handler
+        modeSelect.addEventListener('change', (e) => {
+            const mode = e.target.value;
+            // Reset UI
+            qualityGroup.style.display = 'none';
+            pageSizeGroup.style.display = 'none';
+            ocrLangGroup.style.display = 'none';
+            editActionGroup.style.display = 'none';
+
+            if (mode === 'convert') {
+                qualityGroup.style.display = 'block';
+                pageSizeGroup.style.display = 'block';
+                fileInput.accept = 'image/*';
+            } else if (mode === 'ocr') {
+                ocrLangGroup.style.display = 'block';
+                fileInput.accept = 'image/*';
+            } else if (mode === 'compress') {
+                qualityGroup.style.display = 'block';
+                fileInput.accept = '.pdf';
+            } else if (mode === 'edit') {
+                editActionGroup.style.display = 'block';
+                fileInput.accept = 'image/*';
+            }
+
+            selectedFiles = [];
+            updateFileList();
+            resultCard.style.display = 'none';
+        });
+
+        // Trigger convert mode view by default
+        modeSelect.dispatchEvent(new Event('change'));
+
+        // Handle clicks
+        dropzone.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        // Handle Drag & Drop
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => dropzone.classList.add('dropzone--active'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => dropzone.classList.remove('dropzone--active'), false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            handleFiles(dt.files);
+        });
+
+        function handleFiles(files) {
+            selectedFiles = [...files];
+            updateFileList();
+            resultCard.style.display = 'none';
+        }
+
+        function updateFileList() {
+            if (selectedFiles.length === 0) {
+                fileList.textContent = '';
+                return;
+            }
+            const count = selectedFiles.length;
+            fileList.textContent = count === 1 ? `1 ta fayl: ${selectedFiles[0].name}` : `${count} ta fayl tanlandi`;
+        }
+
+        // Convert Button Click
+        convertBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0) {
+                alert('Iltimos, avval fayllarni tanlang!');
+                return;
+            }
+
+            const mode = modeSelect.value;
+            const formData = new FormData();
+            let endpoint = '/api/convert';
+
+            if (mode === 'convert') {
+                selectedFiles.forEach(file => formData.append('files', file));
+                formData.append('quality', document.getElementById('qualitySelect').value);
+                formData.append('pagesize', document.getElementById('pageSizeSelect').value);
+                formData.append('orientation', 'portrait');
+                formData.append('margin', 'small');
+            } else if (mode === 'ocr') {
+                endpoint = '/api/ocr';
+                formData.append('file', selectedFiles[0]);
+                formData.append('lang', document.getElementById('ocrSelect').value);
+            } else if (mode === 'compress') {
+                endpoint = '/api/compress';
+                formData.append('file', selectedFiles[0]);
+                formData.append('quality', document.getElementById('qualitySelect').value);
+            } else if (mode === 'edit') {
+                endpoint = '/api/edit';
+                formData.append('file', selectedFiles[0]);
+                formData.append('action', document.getElementById('editActionSelect').value);
+            }
+
+            // UI State: Loading
+            convertBtn.disabled = true;
+            btnText.textContent = 'Ishlanmoqda...';
+            progressBar.style.display = 'block';
+            progressFill.style.width = '0%';
+            resultCard.style.display = 'none';
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 95) progress = 95;
+                progressFill.style.width = progress + '%';
+            }, 400);
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                clearInterval(interval);
+                progressFill.style.width = '100%';
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Xatolik yuz berdi');
+                }
+
+                const result = await response.json();
+
+                setTimeout(() => {
+                    progressBar.style.display = 'none';
+                    resultCard.style.display = 'flex';
+                    resultMeta.textContent = `Fayl: ${result.filename}`;
+                    if (result.compressed_size) {
+                        resultMeta.textContent += ` (${(result.compressed_size / 1024 / 1024).toFixed(2)} MB)`;
+                    }
+                    downloadBtn.href = result.download_url;
+                    btnText.textContent = 'Yana bajarish';
+                    convertBtn.disabled = false;
+                }, 600);
+
+            } catch (err) {
+                clearInterval(interval);
+                alert('Xato: ' + err.message);
+                btnText.textContent = 'Xatolik! Qaytadan urinish';
+                convertBtn.disabled = false;
+                progressBar.style.display = 'none';
+            }
+        });
+    }
+
     // ── Initialize everything on DOM ready ───────────────────────────────────
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -249,6 +430,7 @@
         initSmoothScroll();
         initActiveNav();
         initParallax();
+        initConverter(); // New
     });
 
 })();

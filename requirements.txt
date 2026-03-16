@@ -32,3 +32,8 @@ APScheduler==3.10.4
 
 # Async HTTP
 httpx==0.25.2
+
+# Web Server (FastAPI)
+fastapi==0.109.2
+uvicorn==0.27.1
+python-multipart==0.0.9

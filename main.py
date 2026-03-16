@@ -297,14 +297,43 @@ def register_handlers(application: Application) -> None:
 
 # ── Asosiy ishga tushirish funksiyasi ─────────────────────────────────────────
 
-def main() -> None:
+# ── Asosiy ishga tushirish funksiyasi ─────────────────────────────────────────
+
+import asyncio
+
+async def run_bot(application: Application) -> None:
+    """Telegram botni ishga tushirish."""
+    await application.initialize()
+    await application.start()
+    if application.post_init:
+        await application.post_init(application)
+    
+    logger.info("Bot polling boshlandi...")
+    await application.updater.start_polling(
+        allowed_updates=Update.ALL_TYPES,
+        drop_pending_updates=True,
+    )
+
+async def run_web():
+    """FastAPI web serverni ishga tushirish."""
+    import uvicorn
+    from web_app import app
+    
+    port = int(os.environ.get("PORT", 8000))
+    logger.info(f"Web server ishga tushmoqda: port {port}")
+    
+    config = uvicorn.Config(app, host="0.0.0.0", port=port, log_level="info")
+    server = uvicorn.Server(config)
+    await server.serve()
+
+async def main_async() -> None:
     """
-    Botni ishga tushirish — asosiy funksiya.
+    Asosiy asinxron ishga tushirish — Bot va Web server parallel ishlaydi.
     """
     setup_logging()
-
+    
     logger.info("=" * 50)
-    logger.info("  IMAGE TO PDF PRO BOT ishga tushmoqda...")
+    logger.info("  IMAGE TO PDF PRO (Bot + Web) ishga tushmoqda...")
     logger.info("=" * 50)
 
     # Papkalarni tekshirish
@@ -312,8 +341,9 @@ def main() -> None:
         directory.mkdir(parents=True, exist_ok=True)
 
     # Application yaratish
+    from telegram.ext import ApplicationBuilder
     application = (
-        Application.builder()
+        ApplicationBuilder()
         .token(BOT_TOKEN)
         .post_init(post_init)
         .post_shutdown(post_shutdown)
@@ -323,15 +353,27 @@ def main() -> None:
     # Handlerlarni ro'yxatga olish
     register_handlers(application)
 
-    logger.info("Bot polling boshlandi (Ctrl+C bilan to'xtatish)")
+    # Bot va Webni parallel yuritish
+    try:
+        await asyncio.gather(
+            run_bot(application),
+            run_web()
+        )
+    except (KeyboardInterrupt, SystemExit):
+        logger.info("To'xtatish buyrug'i olindi...")
+    finally:
+        if application.running:
+            await application.stop()
+            await application.shutdown()
+        logger.info("Tizim yopildi.")
 
-    # Botni ishga tushirish
-    application.run_polling(
-        allowed_updates=Update.ALL_TYPES,
-        drop_pending_updates=True,
-        close_loop=True,
-    )
-
+def main() -> None:
+    """Asosiy kirish nuqtasi."""
+    try:
+        asyncio.run(main_async())
+    except KeyboardInterrupt:
+        pass
 
 if __name__ == "__main__":
+    import os
     main()
