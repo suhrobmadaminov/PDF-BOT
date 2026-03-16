@@ -19,9 +19,9 @@ aptPkgs = [
 
 [phases.install]
 cmds = [
-    "python -m venv /opt/venv",
+    "python3 -m venv /opt/venv",
     "/opt/venv/bin/pip install --no-cache-dir -r requirements.txt"
 ]
 
 [start]
-cmd = "/opt/venv/bin/python main.py"
+cmd = "/opt/venv/bin/python3 main.py"
