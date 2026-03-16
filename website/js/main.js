@@ -255,6 +255,9 @@
         const downloadBtn = document.getElementById('downloadBtn');
 
         const modeSelect = document.getElementById('modeSelect');
+        const converterOptions = document.querySelector('.converter__options');
+        const converterAction = document.querySelector('.converter__action');
+
         const qualityGroup = document.getElementById('qualityGroup');
         const pageSizeGroup = document.getElementById('pageSizeGroup');
         const ocrLangGroup = document.getElementById('ocrLangGroup');
@@ -264,10 +267,39 @@
 
         let selectedFiles = [];
 
+        // Global Select Tool Function
+        window.selectTool = function (mode) {
+            modeSelect.value = mode;
+            modeSelect.dispatchEvent(new Event('change'));
+
+            // Scroll to converter
+            const converterSection = document.getElementById('converter');
+            if (converterSection) {
+                converterSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Update Titles
+            const titles = {
+                'convert': 'JPG в PDF',
+                'ocr': 'OCR PDF',
+                'compress': 'Сжать PDF',
+                'edit': 'Редактировать изображение'
+            };
+            const descs = {
+                'convert': 'Преобразуйте ваши изображения в PDF документы высокой четкости.',
+                'ocr': 'Распознавание текста и создание доступных для поиска PDF.',
+                'compress': 'Уменьшите размер PDF файла без потери качества.',
+                'edit': 'Примените фильтры и изменения к вашим изображениям.'
+            };
+
+            document.querySelector('.dropzone__title').textContent = titles[mode] || 'Выберите файлы';
+            document.querySelector('.dropzone__desc').textContent = descs[mode] || 'или перетащите их сюда';
+        };
+
         // Mode Change Handler
         modeSelect.addEventListener('change', (e) => {
             const mode = e.target.value;
-            // Reset UI
+            // Reset UI Groups
             qualityGroup.style.display = 'none';
             pageSizeGroup.style.display = 'none';
             ocrLangGroup.style.display = 'none';
@@ -291,13 +323,24 @@
             selectedFiles = [];
             updateFileList();
             resultCard.style.display = 'none';
+
+            // Hide options until files selected
+            converterOptions.style.display = 'none';
+            converterAction.style.display = 'none';
         });
 
         // Trigger convert mode view by default
         modeSelect.dispatchEvent(new Event('change'));
 
         // Handle clicks
-        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('click', (e) => {
+            if (e.target.id === 'fileInputLabel' || e.target.closest('#fileInputLabel')) {
+                // Label click will trigger input naturally
+                return;
+            }
+            // Optional: clicking anywhere in dropzone triggers it too
+            // fileInput.click();
+        });
 
         fileInput.addEventListener('change', (e) => {
             handleFiles(e.target.files);
@@ -324,38 +367,39 @@
         });
 
         function handleFiles(files) {
+            if (files.length === 0) return;
             selectedFiles = [...files];
             updateFileList();
             resultCard.style.display = 'none';
+
+            // Show options and action button when files selected (iLovePDF Style)
+            converterOptions.style.display = 'grid';
+            converterAction.style.display = 'block';
+
+            // Hide the initial upload UI to focus on options
+            document.getElementById('fileInputLabel').style.display = 'none';
         }
 
         function updateFileList() {
             fileList.innerHTML = '';
-            if (selectedFiles.length === 0) return;
+            if (selectedFiles.length === 0) {
+                document.getElementById('fileInputLabel').style.display = 'inline-block';
+                return;
+            }
 
             selectedFiles.forEach(file => {
                 const badge = document.createElement('div');
                 badge.className = 'file-badge';
-                // Truncate name if too long
                 const name = file.name.length > 20 ? file.name.substring(0, 17) + '...' : file.name;
                 badge.textContent = name;
                 fileList.appendChild(badge);
             });
         }
 
-        // Mouse tracking for dropzone glow effect
-        dropzone.addEventListener('mousemove', (e) => {
-            const rect = dropzone.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            dropzone.style.setProperty('--mouse-x', `${x}%`);
-            dropzone.style.setProperty('--mouse-y', `${y}%`);
-        });
-
         // Convert Button Click
         convertBtn.addEventListener('click', async () => {
             if (selectedFiles.length === 0) {
-                alert('Iltimos, avval fayllarni tanlang!');
+                alert('Пожалуйста, выберите файлы!');
                 return;
             }
 
@@ -385,7 +429,7 @@
 
             // UI State: Loading
             convertBtn.disabled = true;
-            btnText.textContent = 'Ishlanmoqda...';
+            btnText.textContent = 'Обработка...';
             progressBar.style.display = 'block';
             progressFill.style.width = '0%';
             resultCard.style.display = 'none';
@@ -408,7 +452,7 @@
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(errorData.detail || 'Xatolik yuz berdi');
+                    throw new Error(errorData.detail || 'Oшибка сервера');
                 }
 
                 const result = await response.json();
@@ -416,19 +460,23 @@
                 setTimeout(() => {
                     progressBar.style.display = 'none';
                     resultCard.style.display = 'flex';
-                    resultMeta.textContent = `Fayl: ${result.filename}`;
+                    resultMeta.textContent = `Файл: ${result.filename}`;
                     if (result.compressed_size) {
                         resultMeta.textContent += ` (${(result.compressed_size / 1024 / 1024).toFixed(2)} MB)`;
                     }
                     downloadBtn.href = result.download_url;
-                    btnText.textContent = 'Yana bajarish';
+                    btnText.textContent = 'Готово';
                     convertBtn.disabled = false;
+
+                    // Hide options
+                    converterOptions.style.display = 'none';
+                    converterAction.style.display = 'none';
                 }, 600);
 
             } catch (err) {
                 clearInterval(interval);
-                alert('Xato: ' + err.message);
-                btnText.textContent = 'Xatolik! Qaytadan urinish';
+                alert('Ошибка: ' + err.message);
+                btnText.textContent = 'Повторить';
                 convertBtn.disabled = false;
                 progressBar.style.display = 'none';
             }
@@ -444,7 +492,7 @@
         initSmoothScroll();
         initActiveNav();
         initParallax();
-        initConverter(); // New
+        initConverter();
     });
 
 })();
