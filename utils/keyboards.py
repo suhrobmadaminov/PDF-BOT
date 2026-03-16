@@ -75,9 +75,6 @@ def get_quality_keyboard(lang: str, current: str = "high") -> InlineKeyboardMark
         lang:    Foydalanuvchi tili
         current: Joriy sifat (belgilash uchun)
     """
-    def mark(key: str) -> str:
-        return f"✅ {_t(key, lang)}" if key.split("_")[-1] == current else _t(key, lang)
-
     quality_map = {
         "low":   "btn_quality_low",
         "medium": "btn_quality_med",

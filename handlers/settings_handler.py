@@ -348,6 +348,7 @@ def get_settings_handlers() -> list:
     Sozlamalar handlerlarini ro'yxat sifatida qaytarish.
     """
     return [
+        CommandHandler("settings",    settings_command),
         CommandHandler("quality",     quality_command),
         CommandHandler("pagesize",    pagesize_command),
         CommandHandler("orientation", orientation_command),

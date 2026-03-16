@@ -120,7 +120,11 @@ async def handle_image(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
         try:
             tg_file = await context.bot.get_file(file_id)
-            local_path = TEMP_DIR / f"img_{user.id}_{get_timestamp()}.jpg"
+            # Fayl kengaytmasini aniqlash
+            ext = Path(file_name).suffix.lower() if file_name else ".jpg"
+            if not ext or ext not in {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff", ".tif", ".heic", ".heif"}:
+                ext = ".jpg"
+            local_path = TEMP_DIR / f"img_{user.id}_{get_timestamp()}{ext}"
             await tg_file.download_to_drive(str(local_path))
         except Exception as e:
             logger.error(f"Rasm yuklab olishda xato: {e}")

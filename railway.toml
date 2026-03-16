@@ -1,9 +1,0 @@
-# Railway Deployment konfiguratsiyasi
-
-[build]
-builder = "nixpacks"
-
-[deploy]
-startCommand = "python3 main.py"
-restartPolicyType = "always"
-restartPolicyMaxRetries = 10

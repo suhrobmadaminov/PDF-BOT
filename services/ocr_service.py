@@ -321,7 +321,7 @@ class OCRService:
             return False, 0
         finally:
             # Vaqtinchalik fayllarni tozalash
-            for temp_pdf in temp_pdfs if 'temp_pdfs' in dir() else []:
+            for temp_pdf in (temp_pdfs if 'temp_pdfs' in locals() else []):
                 try:
                     Path(temp_pdf).unlink(missing_ok=True)
                 except Exception:

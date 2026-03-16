@@ -315,8 +315,11 @@ async def _finish_collect(
         # Har holda state va vaqtinchalik fayllarni tozalash
         images_to_clean = context.user_data.get("collect_images", [])
         await cleanup_files(images_to_clean)
-        if 'output_path' in dir() and output_path and output_path.exists():
-            await cleanup_file(output_path)
+        try:
+            if output_path and output_path.exists():
+                await cleanup_file(output_path)
+        except NameError:
+            pass
 
         context.user_data["collect_mode"] = False
         context.user_data["collect_images"] = []

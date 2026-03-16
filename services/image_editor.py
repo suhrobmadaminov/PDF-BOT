@@ -17,24 +17,6 @@ class ImageEditor:
     Har bir o'zgartirish joriy ish nusxasiga qo'llanadi.
     """
 
-    @staticmethod
-    def _get_work_copy(original_path: str | Path) -> Path:
-        """
-        Asl rasmdan ish nusxasi yaratish.
-
-        Args:
-            original_path: Asl rasm yo'li
-
-        Returns:
-            Ish nusxasi yo'li (TEMP_DIR da)
-        """
-        original = Path(original_path)
-        work_path = TEMP_DIR / f"edit_{original.stem}_{id(original_path)}.jpg"
-        try:
-            shutil.copy2(original, work_path)
-        except Exception as e:
-            logger.error(f"Ish nusxa yaratishda xato: {e}")
-        return work_path
 
     @staticmethod
     async def adjust_brightness(
