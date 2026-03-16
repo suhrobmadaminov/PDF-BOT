@@ -21,6 +21,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# python → python3 (Railway yoki Procfile da `python` ishlatilsa ham ishlaydi)
+RUN ln -sf $(which python3) /usr/bin/python
+
 # Set working directory
 WORKDIR /app
 
