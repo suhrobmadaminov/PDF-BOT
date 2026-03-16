@@ -386,16 +386,17 @@
                 <!-- Dropzone -->
                 <div class="dropzone" id="dropzone">
                     <input type="file" id="fileInput" multiple hidden accept="image/*">
-                    <span class="dropzone__icon">🚀</span>
-                    <h3 class="dropzone__title">Fayllarni shu yerga tashlang</h3>
-                    <p class="dropzone__desc">Yoki kompyuterdan tanlash uchun bosing (Max 50MB)</p>
-                    <div id="fileList" style="margin-top: 1rem; font-size: 0.85rem; color: var(--primary-light);"></div>
+                    <div class="dropzone__icon">🚀</div>
+                    <h3 class="dropzone__title">Fayllarni tanlang</h3>
+                    <p class="dropzone__desc">Sichqonchaning chap tugmasi bilan bosing yoki fayllarni bu yerga tashlang
+                    </p>
+                    <div id="fileList"></div>
                 </div>
 
                 <!-- Options -->
                 <div class="converter__options">
                     <div class="option-group">
-                        <label class="option-group__label">Amal (Mode)</label>
+                        <label class="option-group__label">Xizmat turi</label>
                         <select class="select-custom" id="modeSelect">
                             <option value="convert">🖼️ Rasmlarni PDF ga</option>
                             <option value="ocr">🔍 Matnni aniqlash (OCR)</option>
@@ -404,39 +405,39 @@
                         </select>
                     </div>
                     <div class="option-group" id="qualityGroup">
-                        <label class="option-group__label">Sifat</label>
+                        <label class="option-group__label">Sifat darajasi</label>
                         <select class="select-custom" id="qualitySelect">
-                            <option value="high">Yuqori (High)</option>
-                            <option value="medium">O'rta (Medium)</option>
-                            <option value="low">Past (Low)</option>
-                            <option value="best">Eng zo'r (Best)</option>
+                            <option value="high">Yuqori (High Qualtiy)</option>
+                            <option value="medium">O'rta (Default)</option>
+                            <option value="low">Past (Fastest)</option>
+                            <option value="best">Eng yuqori (Best)</option>
                         </select>
                     </div>
                     <div class="option-group" id="pageSizeGroup">
-                        <label class="option-group__label">Sahifa O'lchami</label>
+                        <label class="option-group__label">Varaq o'lchami</label>
                         <select class="select-custom" id="pageSizeSelect">
-                            <option value="A4">A4</option>
-                            <option value="A5">A5</option>
-                            <option value="A3">A3</option>
-                            <option value="Original">Asl o'lcham</option>
+                            <option value="A4">Standart A4</option>
+                            <option value="A5">Kichik A5</option>
+                            <option value="A3">Katta A3</option>
+                            <option value="Original">Asl rasm o'lchami</option>
                         </select>
                     </div>
                     <div class="option-group" id="ocrLangGroup" style="display: none;">
-                        <label class="option-group__label">OCR Til</label>
+                        <label class="option-group__label">Matn tili</label>
                         <select class="select-custom" id="ocrSelect">
-                            <option value="uz">🇺🇿 O'zbek</option>
-                            <option value="en">🇬🇧 English</option>
-                            <option value="ru">🇷🇺 Русский</option>
+                            <option value="uz">🇺🇿 O'zbek tili</option>
+                            <option value="en">🇬🇧 Ingliz tili</option>
+                            <option value="ru">🇷🇺 Rus tili</option>
                         </select>
                     </div>
                     <div class="option-group" id="editActionGroup" style="display: none;">
-                        <label class="option-group__label">Tahrirlash</label>
+                        <label class="option-group__label">O'zgartirish</label>
                         <select class="select-custom" id="editActionSelect">
-                            <option value="ed_bri_p25">Yorqinlik +25%</option>
-                            <option value="ed_con_hi">Kontrast yuqori</option>
-                            <option value="ed_gray">Qora-oq</option>
-                            <option value="ed_rot_90">90° o'ngga</option>
-                            <option value="ed_sharp">Keskinlashtirish</option>
+                            <option value="ed_bri_p25">Yorqinroq (+25%)</option>
+                            <option value="ed_con_hi">Kontrastni oshirish</option>
+                            <option value="ed_gray">Oq-qora format</option>
+                            <option value="ed_rot_90">90 gradusga burish</option>
+                            <option value="ed_sharp">Keskinlikni oshirish</option>
                         </select>
                     </div>
                 </div>
@@ -444,7 +445,7 @@
                 <!-- Action -->
                 <div class="converter__action">
                     <button class="btn btn--xl btn--primary" id="convertBtn">
-                        <span id="btnText">Konvertatsiya qilish</span>
+                        <span id="btnText">Hozir konvertatsiya qilish</span>
                     </button>
 
                     <div class="progress" id="progressBar">
@@ -454,10 +455,10 @@
 
                 <!-- Result -->
                 <div class="result-card" id="resultCard">
-                    <div class="result-card__icon">🎉</div>
+                    <div class="result-card__icon">✅</div>
                     <div class="result-card__info">
-                        <h4 class="result-card__title">Tayyor! Fayl muvaffaqiyatli yaratildi</h4>
-                        <p class="result-card__meta" id="resultMeta">Fayl nomi: output.pdf</p>
+                        <h4 class="result-card__title">Amal bajarildi!</h4>
+                        <p class="result-card__meta" id="resultMeta">Tayyor fayl: output.pdf</p>
                     </div>
                     <a href="#" class="btn btn--primary" id="downloadBtn" download>Yuklab olish</a>
                 </div>

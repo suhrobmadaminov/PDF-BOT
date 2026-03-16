@@ -330,13 +330,27 @@
         }
 
         function updateFileList() {
-            if (selectedFiles.length === 0) {
-                fileList.textContent = '';
-                return;
-            }
-            const count = selectedFiles.length;
-            fileList.textContent = count === 1 ? `1 ta fayl: ${selectedFiles[0].name}` : `${count} ta fayl tanlandi`;
+            fileList.innerHTML = '';
+            if (selectedFiles.length === 0) return;
+
+            selectedFiles.forEach(file => {
+                const badge = document.createElement('div');
+                badge.className = 'file-badge';
+                // Truncate name if too long
+                const name = file.name.length > 20 ? file.name.substring(0, 17) + '...' : file.name;
+                badge.textContent = name;
+                fileList.appendChild(badge);
+            });
         }
+
+        // Mouse tracking for dropzone glow effect
+        dropzone.addEventListener('mousemove', (e) => {
+            const rect = dropzone.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            dropzone.style.setProperty('--mouse-x', `${x}%`);
+            dropzone.style.setProperty('--mouse-y', `${y}%`);
+        });
 
         // Convert Button Click
         convertBtn.addEventListener('click', async () => {
