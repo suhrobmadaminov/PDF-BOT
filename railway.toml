@@ -1,0 +1,8 @@
+# Force Railway to use the Dockerfile
+[build]
+builder = "docker"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+restartPolicyType = "always"
+restartPolicyMaxRetries = 10

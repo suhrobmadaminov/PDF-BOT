@@ -33,4 +33,4 @@ COPY . .
 
 # Ensure Procfile and other configs don't interfere by setting the CMD here
 # This will be the default start command
-CMD ["python", "main.py"]
+CMD ["python3", "main.py"]
