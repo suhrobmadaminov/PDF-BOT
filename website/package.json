@@ -1,0 +1,16 @@
+{
+    "name": "image-to-pdf-pro-website",
+    "version": "1.0.0",
+    "description": "Image to PDF Pro Bot — Landing Page",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node server.js"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "keywords": ["pdf", "image", "telegram", "bot", "landing-page"],
+    "author": "Image to PDF Pro Team",
+    "license": "MIT"
+}

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PDF Pro Bot — Rasmlarni Professional PDF ga aylantiring</title>
+    <meta name="description"
+        content="Telegram orqali rasmlarni yuqori sifatli PDF ga aylantiring. OCR, tahrirlash, ko'p rasmli PDF va boshqa ko'plab imkoniyatlar.">
+    <meta name="keywords" content="image to pdf, rasm pdf, telegram bot, pdf converter, ocr, uzbekistan">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Image to PDF Pro Bot">
+    <meta property="og:description" content="Telegram orqali rasmlarni professional PDF ga aylantiring — bepul va tez!">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="uz_UZ">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Image to PDF Pro Bot">
+    <meta name="twitter:description"
+        content="Rasmlarni PDF ga aylantiruvchi Telegram bot. OCR, tahrirlash va boshqalar.">
+
+    <!-- Favicon emoji -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  HEADER / NAVIGATION                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <a href="#" class="header__logo">
+                <span class="header__logo-icon">📄</span>
+                <span class="header__logo-text">Image to PDF <span class="text-gradient">Pro</span></span>
+            </a>
+
+            <nav class="header__nav" id="nav">
+                <a href="#features" class="header__link">Xususiyatlar</a>
+                <a href="#how-it-works" class="header__link">Qanday ishlaydi</a>
+                <a href="#commands" class="header__link">Buyruqlar</a>
+                <a href="#faq" class="header__link">FAQ</a>
+            </nav>
+
+            <a href="https://t.me/bot_username" target="_blank" class="btn btn--primary btn--sm header__cta">
+                🤖 Botni Ochish
+            </a>
+
+            <button class="header__burger" id="burger" aria-label="Menyu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu__nav">
+            <a href="#features" class="mobile-menu__link">Xususiyatlar</a>
+            <a href="#how-it-works" class="mobile-menu__link">Qanday ishlaydi</a>
+            <a href="#commands" class="mobile-menu__link">Buyruqlar</a>
+            <a href="#faq" class="mobile-menu__link">FAQ</a>
+            <a href="https://t.me/bot_username" target="_blank" class="btn btn--primary mobile-menu__cta">
+                🤖 Botni Ochish
+            </a>
+        </nav>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  HERO SECTION                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero__bg-shapes">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+            <div class="hero__shape hero__shape--3"></div>
+        </div>
+
+        <div class="container hero__inner">
+            <div class="hero__content">
+                <div class="hero__badge animate-fade-in">
+                    ⚡ Tez, Oson va Bepul
+                </div>
+                <h1 class="hero__title animate-fade-in">
+                    Rasmlaringizni <br>
+                    <span class="text-gradient">Professional PDF</span> ga <br>
+                    aylantiring
+                </h1>
+                <p class="hero__subtitle animate-fade-in">
+                    Telegram orqali rasmlarni yuqori sifatli PDF formatga aylantiring.
+                    OCR matn aniqlash, rasm tahrirlash, ko'p rasmli PDF va boshqa ko'plab imkoniyatlar —
+                    barchasi bitta botda!
+                </p>
+                <div class="hero__buttons animate-fade-in">
+                    <a href="https://t.me/bot_username" target="_blank" class="btn btn--primary btn--lg btn--pulse">
+                        🤖 Botni Ishga Tushirish
+                    </a>
+                    <a href="#features" class="btn btn--outline btn--lg">
+                        📖 Ko'proq Ma'lumot
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero__visual animate-fade-in">
+                <div class="hero__mockup">
+                    <div class="hero__phone">
+                        <div class="hero__phone-header">
+                            <span class="hero__phone-dot"></span>
+                            <span class="hero__phone-name">Image to PDF Pro Bot</span>
+                        </div>
+                        <div class="hero__phone-body">
+                            <div class="hero__chat-msg hero__chat-msg--bot">
+                                👋 Xush kelibsiz! Rasm yuboring va men PDF ga aylantiray.
+                            </div>
+                            <div class="hero__chat-msg hero__chat-msg--user">
+                                🖼️ rasm.jpg
+                            </div>
+                            <div class="hero__chat-msg hero__chat-msg--bot">
+                                ✅ <strong>PDF tayyor!</strong><br>
+                                📦 Hajmi: 1.2 MB<br>
+                                📄 Sahifalar: 1
+                            </div>
+                            <div class="hero__chat-msg hero__chat-msg--bot hero__chat-msg--file">
+                                📄 document_20260316.pdf
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  STATS SECTION                              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="stats__grid">
+                <div class="stats__item reveal">
+                    <div class="stats__number" data-target="1000">0</div>
+                    <div class="stats__suffix">+</div>
+                    <div class="stats__label">Foydalanuvchilar</div>
+                </div>
+                <div class="stats__item reveal">
+                    <div class="stats__number" data-target="50000">0</div>
+                    <div class="stats__suffix">+</div>
+                    <div class="stats__label">PDF yaratilgan</div>
+                </div>
+                <div class="stats__item reveal">
+                    <div class="stats__number" data-target="7">0</div>
+                    <div class="stats__suffix"></div>
+                    <div class="stats__label">Rasm formati</div>
+                </div>
+                <div class="stats__item reveal">
+                    <div class="stats__number" data-target="3">0</div>
+                    <div class="stats__suffix"></div>
+                    <div class="stats__label">Interfeys tili</div>
+                </div>
+                <div class="stats__item reveal">
+                    <div class="stats__number" data-target="4">0</div>
+                    <div class="stats__suffix"></div>
+                    <div class="stats__label">OCR tili</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  FEATURES SECTION                           -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Kuchli <span class="text-gradient">Xususiyatlar</span></h2>
+                <p class="section-subtitle">Rasmlarni PDF ga aylantirishdan ko'proq — to'liq professional asboblar
+                    to'plami</p>
+            </div>
+
+            <div class="features__grid">
+                <!-- Feature 1 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">🖼️</div>
+                    <h3 class="feature-card__title">Rasm → PDF</h3>
+                    <p class="feature-card__desc">
+                        JPG, PNG, WEBP, BMP, TIFF, HEIC formatlarini yuqori sifatli PDF ga aylantiring.
+                        EXIF orientatsiya avtomatik to'g'rilanadi.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">JPG</span>
+                        <span class="tag">PNG</span>
+                        <span class="tag">WEBP</span>
+                        <span class="tag">HEIC</span>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">📚</div>
+                    <h3 class="feature-card__title">Ko'p Rasmli PDF</h3>
+                    <p class="feature-card__desc">
+                        50 tagacha rasmni bitta PDF ga birlashtiring.
+                        Tartibni o'zgartirish, progress bar va sifat sozlamalari.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">50 ta rasm</span>
+                        <span class="tag">Birlashtirish</span>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">🔍</div>
+                    <h3 class="feature-card__title">OCR Matn Aniqlash</h3>
+                    <p class="feature-card__desc">
+                        Rasm ichidagi matnni aniqlang — O'zbek, Rus, Ingliz va Arab tillarida.
+                        Qidiriladigan (searchable) PDF yaratiladi.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">🇺🇿 O'zbek</span>
+                        <span class="tag">🇷🇺 Rus</span>
+                        <span class="tag">🇬🇧 Ingliz</span>
+                        <span class="tag">🇸🇦 Arab</span>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">✏️</div>
+                    <h3 class="feature-card__title">Rasm Tahrirlash</h3>
+                    <p class="feature-card__desc">
+                        Yorqinlik, kontrast, qora-oq, aylantirish, keskinlashtirish va
+                        A4 ga moslashtirish — barchasi bot ichida.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">6 amaliyot</span>
+                        <span class="tag">Preview</span>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">📄</div>
+                    <h3 class="feature-card__title">PDF → Rasmlar</h3>
+                    <p class="feature-card__desc">
+                        PDF faylni alohida rasmlarga ajrating. JPG yoki PNG formatida.
+                        Ko'p sahifali PDF lar uchun ZIP arxiv chiqariladi.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">JPG/PNG</span>
+                        <span class="tag">ZIP</span>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">🗜️</div>
+                    <h3 class="feature-card__title">PDF Siqish</h3>
+                    <p class="feature-card__desc">
+                        PDF fayllarni siqib kichiklashtiriladi. Rasmlar qayta optimizatsiya qilinadi
+                        va hajm sezilarli kamayadi — saqlash va yuborishda qulaylik.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">Siqish</span>
+                        <span class="tag">Tejash %</span>
+                    </div>
+                </div>
+
+                <!-- Feature 7 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">⚙️</div>
+                    <h3 class="feature-card__title">To'liq Sozlamalar</h3>
+                    <p class="feature-card__desc">
+                        PDF sifati (4 daraja), sahifa o'lchami (6 xil), yo'nalish va chegara —
+                        har bir foydalanuvchi uchun shaxsiy sozlamalar.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">4 sifat</span>
+                        <span class="tag">6 o'lcham</span>
+                    </div>
+                </div>
+
+                <!-- Feature 8 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">📋</div>
+                    <h3 class="feature-card__title">PDF Tarix</h3>
+                    <p class="feature-card__desc">
+                        Oxirgi 5 ta yaratilgan PDF saqlanadi. Tarixdan qayta yuklab olish,
+                        hajm va sana ko'rish imkoniyati.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">5 ta PDF</span>
+                        <span class="tag">Qayta yuklash</span>
+                    </div>
+                </div>
+
+                <!-- Feature 9 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">🌐</div>
+                    <h3 class="feature-card__title">Ko'p Tillilik</h3>
+                    <p class="feature-card__desc">
+                        Bot interfeysi 3 tilda mavjud. Istalgan vaqtda tilni o'zgartirish
+                        mumkin — barcha xabar va tugmalar o'zgaradi.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">🇺🇿 O'zbek</span>
+                        <span class="tag">🇷🇺 Rus</span>
+                        <span class="tag">🇬🇧 Ingliz</span>
+                    </div>
+                </div>
+
+                <!-- Feature 10 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">🛠️</div>
+                    <h3 class="feature-card__title">Admin Panel</h3>
+                    <p class="feature-card__desc">
+                        Adminlar uchun to'liq boshqaruv tizimi. Statistika, xabar yuborish (broadcast),
+                        foydalanuvchilarni bloklash va loglarni kuzatish.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">Statistika</span>
+                        <span class="tag">Broadcast</span>
+                    </div>
+                </div>
+
+                <!-- Feature 11 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">🛡️</div>
+                    <h3 class="feature-card__title">Xavfsizlik</h3>
+                    <p class="feature-card__desc">
+                        Har bir foydalanuvchi uchun rate limit (cheklov), fayl hajmini tekshirish
+                        va vaqtinchalik fayllarni avtomatik tozalash tizimi.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">Rate Limit</span>
+                        <span class="tag">Privacy</span>
+                    </div>
+                </div>
+
+                <!-- Feature 12 -->
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">⚡</div>
+                    <h3 class="feature-card__title">24/7 Ishonchlilik</h3>
+                    <p class="feature-card__desc">
+                        Railway platformasida barqaror ishlovchi tizim. Uzluksiz ishlash,
+                        avtomatik qayta ishga tushish va yuqori tezlik.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">Cloud Native</span>
+                        <span class="tag">Uptime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  HOW IT WORKS                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Qanday <span class="text-gradient">Ishlaydi</span>?</h2>
+                <p class="section-subtitle">Atigi 3 oddiy qadam — 30 soniyada natija</p>
+            </div>
+
+            <div class="steps">
+                <div class="step reveal">
+                    <div class="step__number">1</div>
+                    <div class="step__icon">📱</div>
+                    <h3 class="step__title">Botni Oching</h3>
+                    <p class="step__desc">Telegram da botni oching va /start buyrug'ini yuboring</p>
+                </div>
+
+                <div class="step__connector reveal"></div>
+
+                <div class="step reveal">
+                    <div class="step__number">2</div>
+                    <div class="step__icon">🖼️</div>
+                    <h3 class="step__title">Rasm Yuboring</h3>
+                    <p class="step__desc">Istalgan formatdagi rasmni botga yuboring — bitta yoki bir nechta</p>
+                </div>
+
+                <div class="step__connector reveal"></div>
+
+                <div class="step reveal">
+                    <div class="step__number">3</div>
+                    <div class="step__icon">📄</div>
+                    <h3 class="step__title">PDF Oling</h3>
+                    <p class="step__desc">Tayyor PDF faylni darhol oling — telegram da saqlanib qoladi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  COMMANDS TABLE                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="commands" id="commands">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Bot <span class="text-gradient">Buyruqlari</span></h2>
+                <p class="section-subtitle">Barcha mavjud buyruqlar ro'yxati</p>
+            </div>
+
+            <div class="commands__wrapper reveal">
+                <div class="commands__table">
+                    <div class="commands__group">
+                        <div class="commands__group-title">📌 Asosiy</div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/start</code>
+                            <span class="command-row__desc">Botni boshlash va xush kelibsiz xabar</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/help</code>
+                            <span class="command-row__desc">To'liq foydalanish qo'llanmasi</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/lang</code>
+                            <span class="command-row__desc">Tilni o'zgartirish (UZ / RU / EN)</span>
+                        </div>
+                    </div>
+
+                    <div class="commands__group">
+                        <div class="commands__group-title">📚 Ko'p rasmli PDF</div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/collect</code>
+                            <span class="command-row__desc">Ko'p rasm yig'ish rejimini boshlash</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/done</code>
+                            <span class="command-row__desc">Yig'ishni tugatish va PDF yaratish</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/cancel</code>
+                            <span class="command-row__desc">Rejimni bekor qilish</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/order</code>
+                            <span class="command-row__desc">Rasm tartibini o'zgartirish</span>
+                        </div>
+                    </div>
+
+                    <div class="commands__group">
+                        <div class="commands__group-title">⚙️ Sozlamalar</div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/settings</code>
+                            <span class="command-row__desc">Barcha sozlamalar menyusi</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/quality</code>
+                            <span class="command-row__desc">PDF sifat darajasini tanlash</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/pagesize</code>
+                            <span class="command-row__desc">Sahifa o'lchamini tanlash</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/orientation</code>
+                            <span class="command-row__desc">Sahifa yo'nalishini tanlash</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/margin</code>
+                            <span class="command-row__desc">Chegara o'lchamini tanlash</span>
+                        </div>
+                    </div>
+
+                    <div class="commands__group">
+                        <div class="commands__group-title">🔄 Qo'shimcha</div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/reverse</code>
+                            <span class="command-row__desc">PDF faylni rasmlarga ajratish</span>
+                        </div>
+                        <div class="command-row">
+                            <code class="command-row__cmd">/history</code>
+                            <span class="command-row__desc">PDF tarixini ko'rsatish</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  QUALITY LEVELS                             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="quality" id="quality">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Sifat <span class="text-gradient">Darajalari</span></h2>
+                <p class="section-subtitle">Ehtiyojingizga mos sifat darajasini tanlang</p>
+            </div>
+
+            <div class="quality__grid">
+                <div class="quality-card reveal">
+                    <div class="quality-card__badge quality-card__badge--low">Past</div>
+                    <div class="quality-card__icon">🔴</div>
+                    <h3 class="quality-card__title">Past Sifat</h3>
+                    <div class="quality-card__specs">
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">DPI</span>
+                            <span class="quality-card__spec-value">72</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Hajmi</span>
+                            <span class="quality-card__spec-value">~100-300 KB</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Max o'lcham</span>
+                            <span class="quality-card__spec-value">800×800</span>
+                        </div>
+                    </div>
+                    <p class="quality-card__use">Tez yuborish va kichik hajm uchun ideal</p>
+                </div>
+
+                <div class="quality-card reveal">
+                    <div class="quality-card__badge quality-card__badge--medium">O'rta</div>
+                    <div class="quality-card__icon">🟡</div>
+                    <h3 class="quality-card__title">O'rta Sifat</h3>
+                    <div class="quality-card__specs">
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">DPI</span>
+                            <span class="quality-card__spec-value">150</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Hajmi</span>
+                            <span class="quality-card__spec-value">~500KB-1MB</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Max o'lcham</span>
+                            <span class="quality-card__spec-value">1920×1920</span>
+                        </div>
+                    </div>
+                    <p class="quality-card__use">Kundalik foydalanish uchun yaxshi balans</p>
+                </div>
+
+                <div class="quality-card quality-card--popular reveal">
+                    <div class="quality-card__popular-tag">⭐ Tavsiya etiladi</div>
+                    <div class="quality-card__badge quality-card__badge--high">Yuqori</div>
+                    <div class="quality-card__icon">🟢</div>
+                    <h3 class="quality-card__title">Yuqori Sifat</h3>
+                    <div class="quality-card__specs">
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">DPI</span>
+                            <span class="quality-card__spec-value">200</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Hajmi</span>
+                            <span class="quality-card__spec-value">~2-5MB</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Max o'lcham</span>
+                            <span class="quality-card__spec-value">2560×2560</span>
+                        </div>
+                    </div>
+                    <p class="quality-card__use">Professional hujjatlar uchun eng yaxshi tanlov</p>
+                </div>
+
+                <div class="quality-card reveal">
+                    <div class="quality-card__badge quality-card__badge--ultra">Ultra</div>
+                    <div class="quality-card__icon">💎</div>
+                    <h3 class="quality-card__title">Ultra Sifat</h3>
+                    <div class="quality-card__specs">
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">DPI</span>
+                            <span class="quality-card__spec-value">300</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Hajmi</span>
+                            <span class="quality-card__spec-value">~5-15MB</span>
+                        </div>
+                        <div class="quality-card__spec">
+                            <span class="quality-card__spec-label">Max o'lcham</span>
+                            <span class="quality-card__spec-value">4096×4096</span>
+                        </div>
+                    </div>
+                    <p class="quality-card__use">Chop etish va arxivlash uchun eng yuqori sifat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  SUPPORTED FORMATS                          -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="formats" id="formats">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Qo'llab-quvvatlanadigan <span class="text-gradient">Formatlar</span></h2>
+            </div>
+
+            <div class="formats__grid">
+                <div class="formats__group reveal">
+                    <h3 class="formats__group-title">🖼️ Rasm Formatlari</h3>
+                    <div class="formats__list">
+                        <div class="format-chip">JPG / JPEG</div>
+                        <div class="format-chip">PNG</div>
+                        <div class="format-chip">WEBP</div>
+                        <div class="format-chip">BMP</div>
+                        <div class="format-chip">TIFF</div>
+                        <div class="format-chip">HEIC / HEIF</div>
+                    </div>
+                </div>
+
+                <div class="formats__group reveal">
+                    <h3 class="formats__group-title">📏 Sahifa O'lchamlari</h3>
+                    <div class="formats__list">
+                        <div class="format-chip">A3 (297×420mm)</div>
+                        <div class="format-chip">A4 (210×297mm)</div>
+                        <div class="format-chip">A5 (148×210mm)</div>
+                        <div class="format-chip">Letter (216×279mm)</div>
+                        <div class="format-chip">Legal (216×356mm)</div>
+                        <div class="format-chip">Original</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  FAQ                                        -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Ko'p So'raladigan <span class="text-gradient">Savollar</span></h2>
+            </div>
+
+            <div class="faq__list">
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>Bot bepulmi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Ha, bot to'liq bepul. Barcha funksiyalar — PDF yaratish, OCR, tahrirlash, siqish — hech
+                            qanday to'lovsiz foydalanish mumkin.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>Maksimal fayl hajmi qancha?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Rasmlar uchun 20MB gacha, PDF fayllar uchun 50MB gacha. Telegram platformasining o'z
+                            cheklovlari ham amal qiladi.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>Qancha rasm birlashtiriladi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Bir sessiyada 50 tagacha rasmni bitta PDF ga birlashtirish mumkin. /collect buyrug'i bilan
+                            boshlang, rasmlarni yuboring va /done bilan tugating.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>OCR qaysi tillarni qo'llab-quvvatlaydi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Hozirda 4 til qo'llab-quvvatlanadi: O'zbek (🇺🇿), Rus (🇷🇺), Ingliz (🇬🇧) va Arab (🇸🇦).
+                            Rasm yuboring va "OCR bilan PDF" tugmasini bosing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>Ma'lumotlarim xavfsizmi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Ha, to'liq xavfsiz. Barcha yuborilgan rasmlar va yaratilgan PDF lar qayta ishlangandan so'ng
+                            serverdan darhol o'chiriladi. Faqat Telegram dagi file_id saqlanadi.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>PDF sifatini sozlash mumkinmi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Ha, 4 ta sifat darajasi mavjud: Past (72 DPI), O'rta (150 DPI), Yuqori (200 DPI) va Ultra
+                            (300 DPI). /quality buyrug'i bilan o'zgartiring. Shuningdek sahifa o'lchami, yo'nalish va
+                            chegara ham sozlanadi.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>PDF ni siqish (compress) mumkinmi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Ha, rasm yuborganda «🗜️ Siqib PDF Qil» tugmasini bosing. Bot rasmni optimizatsiya qilib,
+                            siqilgan PDF yaratadi. Asl hajm va siqilgan hajm orasidagi farq foizda ko'rsatiladi.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>Bot nechta tilda ishlaydi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Bot interfeysi 3 tilda ishlaydi: O'zbek, Rus va Ingliz. /lang buyrug'i bilan istalgan vaqtda
+                            tilni o'zgartirish mumkin. Barcha xabarlar, tugmalar va bildirishnomalar tanlangan tilda
+                            ko'rsatiladi.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-item__question" aria-expanded="false">
+                        <span>PDF tarixim saqlanadimi?</span>
+                        <span class="faq-item__icon">+</span>
+                    </button>
+                    <div class="faq-item__answer">
+                        <p>Ha, oxirgi 5 ta yaratilgan PDF bot xotirasida saqlanadi. /history buyrug'i bilan ko'rib,
+                            qayta yuklab olish yoki o'chirish mumkin. Tarix 7 kungacha saqlanadi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  CTA SECTION                                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="cta-section reveal">
+        <div class="container">
+            <div class="cta-box">
+                <h2 class="cta-box__title">Hoziroq <span class="text-gradient">boshlang!</span></h2>
+                <p class="cta-box__desc">Rasmlaringizni professional PDF ga aylantirish uchun botni ishga tushiring</p>
+                <a href="https://t.me/bot_username" target="_blank" class="btn btn--primary btn--xl btn--pulse">
+                    🤖 Telegram da Ochish
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  FOOTER                                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <div class="footer__logo">
+                        <span class="footer__logo-icon">📄</span>
+                        <span class="footer__logo-text">Image to PDF Pro</span>
+                    </div>
+                    <p class="footer__desc">
+                        Telegram orqali rasmlarni yuqori sifatli PDF ga aylantiruvchi professional bot.
+                        OCR, tahrirlash va ko'plab qo'shimcha imkoniyatlar.
+                    </p>
+                </div>
+
+                <div class="footer__links">
+                    <h4 class="footer__links-title">Havolalar</h4>
+                    <a href="#features" class="footer__link">Xususiyatlar</a>
+                    <a href="#how-it-works" class="footer__link">Qanday ishlaydi</a>
+                    <a href="#commands" class="footer__link">Buyruqlar</a>
+                    <a href="#faq" class="footer__link">FAQ</a>
+                </div>
+
+                <div class="footer__links">
+                    <h4 class="footer__links-title">Bot</h4>
+                    <a href="https://t.me/bot_username" target="_blank" class="footer__link">🤖 Botni Ochish</a>
+                    <a href="https://t.me/MyProjectm" target="_blank" class="footer__link">📢 Telegram Kanal</a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>Made with ❤️ in Uzbekistan</p>
+                <p>© 2024-2026 Image to PDF Pro Bot. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

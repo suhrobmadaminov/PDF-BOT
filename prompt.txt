@@ -1,0 +1,305 @@
+================================================================================
+  IMAGE TO PDF PRO BOT — WEB SAYT YARATISH UCHUN TO'LIQ PROMPT
+================================================================================
+
+LOYIHA NOMI: Image to PDF Pro Bot — Landing Page & Documentation Web Site
+MAQSAD: Telegram Bot loyihasining professional landing page va to'liq hujjatlashtirish veb-saytini yaratish.
+
+================================================================================
+  1. LOYIHA HAQIDA TO'LIQ MA'LUMOT
+================================================================================
+
+Bu Telegram boti rasmlarni professional PDF formatga aylantiradi.
+Bot Python (python-telegram-bot) da yozilgan, Railway.app da deploy qilingan.
+
+BOTNING BARCHA FUNKSIYALARI:
+
+1. 🖼️ RASM → PDF KONVERTATSIYA
+   - Bitta rasmni yuqori sifatli PDF ga aylantirish
+   - JPG, JPEG, PNG, WEBP, BMP, TIFF, HEIC formatlarini qo'llab-quvvatlash
+   - EXIF orientatsiyani avtomatik to'g'rilash
+   - Maksimal rasm hajmi: 20MB
+
+2. 📚 KO'P RASMLI PDF
+   - /collect buyrug'i orqali ko'p rasm yig'ish rejimi
+   - Bir sessiyada 50 tagacha rasm
+   - /order buyrug'i bilan rasm tartibini o'zgartirish (masalan: /order 3,1,2,4)
+   - /done buyrug'i bilan barcha rasmlarni bitta PDF ga birlashtirish
+   - Progress bar ko'rsatish (████░░░░ 50%)
+
+3. 🔍 OCR (MATN ANIQLASH)
+   - Rasm ichidagi matnni aniqlash
+   - 4 ta til: O'zbek, Rus, Ingliz, Arab
+   - pytesseract va easyocr kutubxonalarini birgalikda ishlatish
+   - Qidiriladigan (searchable) PDF yaratish
+   - Aniqlangan belgilar sonini ko'rsatish
+
+4. ✏️ RASM TAHRIRLASH
+   - Yorqinlik sozlash (5 daraja: -50%, -25%, Normal, +25%, +50%)
+   - Kontrast sozlash (4 daraja: Past, O'rta, Yuqori, Juda yuqori)
+   - Qora-oq formatga aylantirish
+   - Aylantirish (90°, 180°, 270°)
+   - Keskinlashtirish (Sharpen)
+   - A4 sahifasiga moslashtirish
+   - Asl holatiga qaytarish (Reset)
+   - Tahrirlashdan keyin preview ko'rsatish
+
+5. 🗜️ PDF SIQISH (COMPRESSION)
+   - Rasmlarni qayta siqib PDF yaratish
+   - Sifat darajasiga qarab siqish
+   - PyMuPDF orqali sahifalarni qayta render qilish
+
+6. 📄 PDF → RASMLAR (REVERSE)
+   - PDF faylni alohida rasmlarga ajratish
+   - JPG yoki PNG formatida chiqarish
+   - 5+ sahifali PDF lar uchun avtomatik ZIP arxiv yaratish
+   - Sahifa oralig'ini tanlash (masalan: 1-3, 5, 7-10)
+
+7. ⚙️ SOZLAMALAR TIZIMI
+   - PDF sifati: Past (72dpi), O'rta (150dpi), Yuqori (200dpi), Ultra (300dpi)
+   - Sahifa o'lchami: A3, A4, A5, Letter, Legal, Original
+   - Sahifa yo'nalishi: Portrait, Landscape, Avtomatik
+   - Chegara (margin): Yo'q, Kichik, O'rta, Katta
+   - Barcha sozlamalar foydalanuvchi uchun SQLite bazada saqlanadi
+
+8. 📋 PDF TARIX
+   - Oxirgi 5 ta yaratilgan PDF saqlash
+   - Tarixdan qayta yuklab olish (Telegram file_id orqali)
+   - Tarixdan o'chirish
+   - Hajm, sahifa soni, sana ko'rsatish
+
+9. 🔐 ADMIN PANEL
+   - Umumiy statistika (foydalanuvchilar, PDF lar, bugungi faollik)
+   - /broadcast — barcha foydalanuvchilarga xabar yuborish
+   - /ban va /unban — foydalanuvchilarni bloklash
+   - /stats [user_id] — foydalanuvchi statistikasi
+   - /cleanup — vaqtinchalik fayllarni tozalash
+   - /logs — oxirgi xatolarni ko'rish
+   - Foydalanuvchi qidirish (ID yoki username bo'yicha)
+
+10. 🛡️ XAVFSIZLIK
+    - Rate Limiting: 1 daqiqada 10 so'rov
+    - Maksimal fayl hajmi: 20MB (rasmlar), 50MB (PDF)
+    - Bloklangan foydalanuvchilar tizimi
+    - Admin buyruqlari himoyasi
+    - Vaqtinchalik fayllar avtomatik tozalash
+
+11. 🌐 KO'P TILLILIK
+    - O'zbek tili (asosiy)
+    - Rus tili
+    - Ingliz tili
+    - Inline keyboard orqali til tanlash
+
+12. 📊 MA'LUMOTLAR BAZASI (SQLite)
+    - users — foydalanuvchilar jadvali
+    - sessions — aktiv sessiyalar (ko'p rasmli rejim)
+    - pdf_history — PDF tarix
+    - statistics — harakat statistikasi
+    - settings — foydalanuvchi sozlamalari
+
+13. 🔄 AVTOMATIK TOZALASH
+    - APScheduler orqali har kecha 03:00 da
+    - Eski temp fayllarni o'chirish
+    - Eski tarix yozuvlarini tozalash
+
+14. TEXNIK STEK
+    - Python 3.11+
+    - python-telegram-bot 20.7 (async)
+    - Pillow 10.2 (rasm ishlash)
+    - img2pdf 0.4.4 (PDF yaratish)
+    - PyMuPDF 1.23 (PDF o'qish)
+    - pytesseract 0.3.10 (OCR)
+    - aiosqlite 0.20 (async database)
+    - loguru 0.7.2 (logging)
+    - APScheduler 3.10 (vazifa rejalashtirish)
+    - Railway.app (deployment)
+
+================================================================================
+  2. VEB-SAYT TALABLARI
+================================================================================
+
+TEXNOLOGIYA: Vanilla HTML + CSS + JavaScript (framework ishlatmaslik)
+DIZAYN USLUBI: Zamonaviy, premium, dark mode, glassmorphism
+JOYLASHTIRILISH: Botning papkasi ichida alohida "website" papkasida
+
+SAYT TUZILISHI (Single Page Application):
+
+SAHIFA TUZILISHI:
+
+── HEADER / NAVIGATION ─────────────────────────
+  - Logo (PDF icon + "Image to PDF Pro" nomi)
+  - Navigatsiya: Bosh sahifa | Xususiyatlar | Qanday ishlaydi | Buyruqlar | FAQ
+  - "Botni ochish" tugmasi (https://t.me/bot_username ga yo'naltirish)
+  - Mobil menyusi (hamburger)
+  - Scrollda sticky header
+
+── HERO SECTION ────────────────────────────────
+  - Katta sarlavha: "Rasmlaringizni Professional PDF ga aylantiring"
+  - Pastki matn: "Telegram orqali tez, oson va bepul"
+  - CTA tugma: "🤖 Botni Ishga Tushirish" (Telegram havolasi)
+  - Ikkinchi tugma: "📖 Ko'proq Ma'lumot" (scroll down)
+  - Animatsiyali gradient fon
+  - Rasm/illustration: PDF konvertatsiya jarayoni vizualizatsiyasi
+
+── STATISTIKA SECTION ──────────────────────────
+  - Animated counter effektlari
+  - "1000+ Foydalanuvchilar" (placeholder raqam)
+  - "50000+ PDF yaratilgan"
+  - "7 Rasm formati"
+  - "4 OCR tili"
+
+── XUSUSIYATLAR (FEATURES) ─────────────────────
+  - 6 ta asosiy xususiyat kartasi (grid layout):
+    1. 🖼️ Rasm → PDF (format qo'llab-quvvatlash)
+    2. 📚 Ko'p rasmli PDF (50 tagacha rasm)
+    3. 🔍 OCR Matn Aniqlash (4 til)
+    4. ✏️ Rasm Tahrirlash (6 ta amaliyot)
+    5. 📄 PDF → Rasmlar (reverse)
+    6. ⚙️ To'liq Sozlamalar (sifat, sahifa, yo'nalish)
+  - Har bir kartada icon, sarlavha, qisqa tavsif
+  - Hover effekti: kartalar ko'tariladi (transform + shadow)
+  - Glassmorphism karta stili
+
+── QANDAY ISHLAYDI (HOW IT WORKS) ─────────────
+  - 3 bosqichli jarayon:
+    Step 1: "📱 Botni Oching" — Telegram da @bot_username ni oching
+    Step 2: "🖼️ Rasm Yuboring" — Rasmni yuklang
+    Step 3: "📄 PDF Oling" — Tayyor PDF ni yuklab oling
+  - Har bir bosqichda raqam, icon va tavsif
+  - Bosqichlar orasida chiziqli ulanish (connector line)
+
+── BUYRUQLAR RO'YXATI (COMMANDS) ───────────────
+  - Table formatida barcha bot buyruqlari:
+    /start | Botni boshlash
+    /help | Yordam
+    /collect | Ko'p rasm yig'ish
+    /done | PDF yaratish
+    /cancel | Bekor qilish
+    /order | Tartib o'zgartirish
+    /quality | Sifat sozlash
+    /pagesize | Sahifa o'lchami
+    /orientation | Yo'nalish
+    /margin | Chegara
+    /reverse | PDF → Rasmlar
+    /history | Tarix
+    /lang | Til o'zgartirish
+  - Har bir buyruq yonida emoji va tushunarli tavsif
+
+── SIFAT SOZLAMALARI SECTION ───────────────────
+  - 4 ta sifat darajasi kartalari (horizontal scroll yoki grid):
+    🔴 Past: 72 DPI, ~100-300 KB
+    🟡 O'rta: 150 DPI, ~500KB-1MB
+    🟢 Yuqori: 200 DPI, ~2-5MB
+    💎 Ultra: 300 DPI, ~5-15MB
+  - Vizual indicator (gradient bar)
+
+── QO'LLAB-QUVVATLANUVCHI FORMATLAR ────────────
+  - Rasm formatlari: JPG, PNG, WEBP, BMP, TIFF, HEIC
+  - Sahifa o'lchamlari: A3, A4, A5, Letter, Legal, Original
+  - Animatsiya bilan ko'rsatish
+
+── FAQ (KO'P SO'RALADIGAN SAVOLLAR) ────────────
+  - Accordion stildagi FAQ:
+    • Bot bepulmi? — Ha, to'liq bepul
+    • Maksimal fayl hajmi qancha? — 20MB gacha rasm, 50MB gacha PDF
+    • Qancha rasm birlashtiriladi? — Bir sessiyada 50 tagacha
+    • OCR qaysi tillarni qo'llaydi? — O'zbek, Rus, Ingliz, Arab
+    • Ma'lumotlarim xavfsizmi? — Ha, fayllar darhol o'chiriladi
+    • PDF sifatini sozlash mumkinmi? — Ha, 4 daraja mavjud
+  - Click orqali ochish/yopish animatsiyasi
+
+── FOOTER ──────────────────────────────────────
+  - Bot nomi va qisqa tavsif
+  - "Botni ochish" tugmasi
+  - Telegram kanali havolasi (agar bor bo'lsa)
+  - "Made with ❤️ in Uzbekistan"
+  - © 2024-2026 Image to PDF Pro Bot
+  - Havola: GitHub (agar ommaviy bo'lsa)
+
+================================================================================
+  3. DIZAYN TIZIMI
+================================================================================
+
+RANG PALITRASI (Dark Mode):
+  - Asosiy fon: #0a0a0f (juda qorong'i)
+  - Ikkinchi fon: #111827 (karta fonlari)
+  - Glassmorphism fon: rgba(17, 24, 39, 0.7) + backdrop-filter: blur(20px)
+  - Primary rang: #6366f1 (Indigo)
+  - Primary gradient: linear-gradient(135deg, #6366f1, #8b5cf6)
+  - Secondary rang: #22d3ee (Cyan)
+  - Accent rang: #f59e0b (Amber — urg'u uchun)
+  - Matn asosiy: #f1f5f9
+  - Matn ikkinchi: #94a3b8
+  - Border rangi: rgba(99, 102, 241, 0.2)
+  - Xato rangi: #ef4444
+  - Muvaffaqiyat rangi: #10b981
+
+SHRIFT:
+  - Asosiy: 'Inter', sans-serif (Google Fonts)
+  - Sarlavhalar: font-weight: 700-800
+  - Matn: font-weight: 400
+  - O'lchamlar: h1=3rem, h2=2.25rem, h3=1.5rem, body=1rem, small=0.875rem
+
+ANIMATSIYALAR:
+  - Scroll-triggered fade-in (IntersectionObserver)
+  - Counter animation (raqamlar animatsiyali oshishi)
+  - Hover: scale(1.03) + box-shadow oshishi
+  - Hero gradient animatsiyasi (background-position)
+  - FAQ accordion slide down/up
+  - Smooth scroll navigatsiya
+  - CTA tugma pulse effekti
+  - Floating particles yoki geometric shapes (fon dekoratsiyasi)
+
+RESPONSIVE DIZAYN:
+  - Desktop: 1200px+ (4 ustunli grid)
+  - Tablet: 768px-1199px (2 ustunli grid)
+  - Mobil: 320px-767px (1 ustunli, hamburger menyu)
+  - Container max-width: 1200px, padding: 0 2rem
+
+================================================================================
+  4. TEXNIK TALABLAR
+================================================================================
+
+FAYL TUZILISHI:
+  website/
+  ├── index.html      — Asosiy HTML fayl
+  ├── css/
+  │   └── style.css   — Barcha stillar
+  ├── js/
+  │   └── main.js     — JavaScript (animatsiya, scroll, menyu)
+  └── assets/
+      └── images/     — Rasmlar papkasi
+
+PERFORMANCE:
+  - Tashqi kutubxonalar ishlatmaslik (faqat Google Fonts)
+  - CSS minimal, BEM nomlash uslubi
+  - Lazy loading rasmlar uchun
+  - Smooth animations (GPU-accelerated transforms)
+  - Semantic HTML5 elementlari
+
+SEO:
+  - Meta title, description, keywords
+  - Open Graph va Twitter Card meta taglari
+  - Strukturalangan data (Schema.org SoftwareApplication)
+  - Semantic heading hierarchy (h1 → h2 → h3)
+  - Alt text barcha rasmlarga
+
+ACCESSIBILITY:
+  - Aria labellar
+  - Keyboard navigatsiya
+  - Focus stillar
+  - Screen reader mos keluvchi
+
+================================================================================
+  5. MUHIM ESLATMALAR
+================================================================================
+
+- Bot kodi ochilMAYDI. Faqat yangi "website" papkasi yaratiladi
+- Botni hech qanday o'zgartirish kiritilmasin
+- Sayt to'liq statik (backend kerak emas)
+- Telegramga yo'naltirishda t.me/bot_username ishlatilsin (placeholder)
+- Barcha matnlar O'zbek tilida yozilsin (asosiy auditoriya)
+- Rasm placeholder sifatida CSS gradient va emoji ishlatilsin
+- Dizayn premium va zamonaviy ko'rinishda bo'lsin
+
+================================================================================
