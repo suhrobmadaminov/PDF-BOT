@@ -1,0 +1,546 @@
+Menga "Image to PDF Pro Bot" loyihasi haqida professional, zamonaviy va chiroyli prezentatsiya (slayd) yaratib ber. Prezentatsiya 15-18 slayddan iborat bo'lsin. Har bir slayd vizual jihatdan jozibali, ikonkalar va ranglar bilan bezatilgan bo'lsin. Quyida loyihaning to'liq tavsifi berilgan:
+
+═══════════════════════════════════════════════════════════════
+SLAYD 1: MUQOVA (TITLE SLIDE)
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🤖 Image to PDF Pro Bot
+Tagline: "Rasmlarni Professional PDF ga aylantiruvchi Telegram Bot va Web Platforma"
+Pastda: Yaratuvchi: Suhrob Madaminov | 2026-yil
+Fon: Zamonaviy gradient (ko'k-binafsha), PDF ikonkasi va bot ikonkasi bilan
+
+═══════════════════════════════════════════════════════════════
+SLAYD 2: MUNDARIJA (TABLE OF CONTENTS)
+═══════════════════════════════════════════════════════════════
+
+1. Loyiha haqida umumiy ma'lumot
+2. Muammo va yechim
+3. Asosiy funksiyalar
+4. Texnologiya steki (Technology Stack)
+5. Arxitektura (System Architecture)
+6. Telegram Bot imkoniyatlari
+7. Web platforma
+8. OCR — Matn aniqlash tizimi
+9. Rasm tahrirlash
+10. Ma'lumotlar bazasi
+11. Xavfsizlik va Himoya
+12. Ko'p tillilik (Localization)
+13. Deploy va Hosting
+14. Loyiha fayl strukturasi
+15. Demo va natijalar
+16. Kelajak rejalari
+17. Xulosa va savol-javob
+
+═══════════════════════════════════════════════════════════════
+SLAYD 3: LOYIHA HAQIDA UMUMIY MA'LUMOT
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 📋 Loyiha haqida
+
+"Image to PDF Pro Bot" — bu zamonaviy, ko'p funksiyali platforma bo'lib, foydalanuvchilarga rasmlarni professional sifatda PDF hujjatlarga aylantirish imkoniyatini beradi. Loyiha ikki asosiy qismdan iborat:
+
+🤖 Telegram Bot (@PDFYordamBot):
+- Foydalanuvchilar Telegram orqali rasmlarni yuborib, bir zumda PDF olishlari mumkin
+- 15+ buyruq va to'liq interaktiv interfeys
+- O'zbek, Rus va Ingliz tillarida ishlaydi
+
+🌐 Web Platforma:
+- iLovePDF uslubidagi zamonaviy veb-sayt
+- Brauzer orqali to'g'ridan-to'g'ri fayl konvertatsiya qilish
+- FastAPI backend bilan real-time API
+
+📊 Asosiy raqamlar:
+- 12+ Python modullari
+- 5 ta ma'lumotlar bazasi jadvali
+- 4 ta web API endpoint
+- 3 tilni qo'llab-quvvatlash
+- 50+ Telegram bot buyruq va callback handler
+
+═══════════════════════════════════════════════════════════════
+SLAYD 4: MUAMMO VA YECHIM
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: ❓ Muammo va 💡 Yechim
+
+MUAMMO:
+❌ Rasmlarni PDF ga aylantirish uchun kompyuterga dastur o'rnatish kerak
+❌ Ko'pchilik onlayn servislar pullik yoki cheklangan
+❌ Mobil qurilmalarda PDF yaratish qiyin
+❌ OCR (matn aniqlash) xizmatlari qimmat va murakkab
+❌ O'zbek tilidagi PDF asboblar kam
+
+YECHIM — Image to PDF Pro Bot:
+✅ Telegram orqali istalgan qurilmadan foydalanish mumkin
+✅ 100% bepul va cheksiz
+✅ Bir necha soniyada natija
+✅ OCR bilan rasmdan matn ajratish — 4 tilda (O'zbek, Rus, Ingliz, Arab)
+✅ Web platforma — dastur o'rnatmasdan brauzerda ishlash
+✅ O'zbek tilida to'liq interfeys
+
+═══════════════════════════════════════════════════════════════
+SLAYD 5: ASOSIY FUNKSIYALAR (CORE FEATURES)
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: ⚡ Asosiy Funksiyalar
+
+6 ta asosiy funksiyani kartochkalar shaklida ko'rsat:
+
+📸 Rasm → PDF Konvertatsiya:
+- Bitta yoki ko'p rasmni PDF ga aylantirish
+- 50 tagacha rasmni bir PDF ga birlashtirish
+- 4 xil sifat darajasi: Past, O'rta, Yuqori, Ultra (72-300 DPI)
+
+🔍 OCR — Matn Aniqlash:
+- Tesseract OCR engine
+- 4 til: O'zbek (uzb), Rus (rus), Ingliz (eng), Arab (ara)
+- Qidiriladigan (searchable) PDF yaratish
+
+🔄 PDF → Rasm (Reverse):
+- PDF sahifalarini alohida rasmlarga ajratish
+- JPG yoki PNG formatida eksport
+- ZIP arxiv sifatida yuklab olish
+
+✏️ Rasm Tahrirlash:
+- Yorqinlik va kontrast sozlash
+- Qora-oq formatga aylantirish
+- 90°/180°/270° aylantirish
+- Keskinlashtirish (Sharpen)
+- A4 sahifasiga moslashtirish
+
+🗜️ PDF Siqish (Compress):
+- Fayl hajmini kamaytirish
+- Original sifatni saqlash
+- Low/Medium/High siqish darajalari
+
+📄 Sahifa Sozlamalari:
+- 6 ta varaq o'lchami: A3, A4, A5, Letter, Legal, Original
+- Portrait/Landscape/Auto yo'nalish
+- 4 ta chegara opsiyasi: None, Small, Medium, Large
+
+═══════════════════════════════════════════════════════════════
+SLAYD 6: TEXNOLOGIYA STEKI (TECHNOLOGY STACK)
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🛠️ Texnologiya Steki
+
+Har bir texnologiyani logo bilan ko'rsat:
+
+BACKEND:
+🐍 Python 3.11 — Asosiy dasturlash tili
+🤖 python-telegram-bot 20.7 — Telegram Bot API (async)
+⚡ FastAPI 0.109 — Web framework (yuqori tezlik)
+🦄 Uvicorn — ASGI server
+
+RASM VA PDF ISHLASH:
+🖼️ Pillow (PIL) 10.2 — Rasm qayta ishlash
+📄 img2pdf — Rasmlarni PDFga aylantirish
+📑 PyMuPDF (fitz) — PDF o'qish va sahifalarga ajratish
+🔍 pytesseract — OCR matn aniqlash
+
+MA'LUMOTLAR BAZASI:
+🗃️ SQLite — Yengil, serverless DB
+🔄 aiosqlite — Asinxron SQLite driver
+
+INFRATUZILMA:
+🐳 Docker — Konteynerlashtirish
+🚂 Railway — Cloud deploy
+📝 Loguru — Professional logging
+⏰ APScheduler — Avtomatik vazifalar (cron)
+🌐 HTTPX — Async HTTP so'rovlar
+
+FRONTEND (Web):
+🌍 HTML5 + CSS3 + JavaScript
+🎨 Inter (Google Fonts)
+📱 Responsive Design
+
+═══════════════════════════════════════════════════════════════
+SLAYD 7: TIZIM ARXITEKTURASI (SYSTEM ARCHITECTURE)
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🏗️ Tizim Arxitekturasi
+
+Diagramma shaklida ko'rsat (Flowchart):
+
+┌─────────────────┐     ┌─────────────────┐
+│  Telegram User   │     │   Web Browser    │
+│  (Mobile/Desktop)│     │  (Any Device)    │
+└────────┬─────────┘     └────────┬─────────┘
+         │                        │
+         ▼                        ▼
+┌─────────────────┐     ┌─────────────────┐
+│  Telegram Bot    │     │  FastAPI Web     │
+│  API (Polling)   │     │  Server (:8000)  │
+└────────┬─────────┘     └────────┬─────────┘
+         │                        │
+         └────────┬───────────────┘
+                  ▼
+         ┌─────────────────┐
+         │   main.py        │
+         │  (Entry Point)   │
+         │  asyncio.gather  │
+         └────────┬─────────┘
+                  │
+    ┌─────────────┼──────────────┐
+    ▼             ▼              ▼
+┌────────┐  ┌──────────┐  ┌──────────┐
+│Handlers│  │ Services  │  │ Database │
+│  (6 ta)│  │  (4 ta)   │  │ (SQLite) │
+└────────┘  └──────────┘  └──────────┘
+
+Handlers: start, image, pdf, settings, admin, reverse
+Services: pdf_converter, ocr_service, image_editor, file_optimizer
+Database: users, sessions, pdf_history, statistics, settings
+
+Bot va Web server parallel (asyncio.gather) ishlaydi — bitta dastur ichida ikki xizmat!
+
+═══════════════════════════════════════════════════════════════
+SLAYD 8: TELEGRAM BOT IMKONIYATLARI
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🤖 Telegram Bot — Buyruqlar
+
+Bot buyruqlarini jadval shaklida ko'rsat:
+
+ASOSIY BUYRUQLAR:
+/start — Botni boshlash, tilni tanlash
+/help — Barcha buyruqlar ro'yxati va yordam
+/collect — Ko'p rasm yig'ish rejimini boshlash
+/done — Yig'ishni tugatish va PDF yaratish
+/cancel — Joriy amalni bekor qilish
+
+SOZLAMALAR:
+/quality — PDF sifat darajasini tanlash (Low → Ultra)
+/pagesize — Sahifa o'lchamini tanlash (A3, A4, A5, Letter, Legal, Original)
+/orientation — Yo'nalishni tanlash (Portrait, Landscape, Auto)
+/margin — Sahifa chegarasini sozlash (None, Small, Medium, Large)
+/lang — Interfeys tilini o'zgartirish (🇺🇿 O'zbek, 🇷🇺 Русский, 🇬🇧 English)
+/order — Rasmlar tartibini o'zgartirish
+
+QOSHIMCHA:
+/reverse — PDF ni rasmlarga aylantirish
+/history — Yaratilgan PDF lar tarixi (oxirgi 5 ta)
+/admin — Admin panel (faqat admin foydalanuvchilar uchun)
+
+ADMIN PANEL IMKONIYATLARI:
+📊 Umumiy statistika ko'rish
+📋 Foydalanuvchilar ro'yxati
+🚫 Foydalanuvchini bloklash/blokdan chiqarish
+📢 Barcha foydalanuvchilarga xabar yuborish (broadcast)
+🔍 Foydalanuvchini qidirish
+
+═══════════════════════════════════════════════════════════════
+SLAYD 9: WEB PLATFORMA
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🌐 Web Platforma — iLovePDF uslubidagi dizayn
+
+Web platformaning xususiyatlari:
+
+🎨 Dizayn:
+- iLovePDF.com dan ilhomlangan professional dizayn
+- Oq-qizil rang palitrasi
+- Inter shrift (Google Fonts)
+- Responsive — barcha qurilmalarda ishlaydi
+
+⚡ 4 ta API Endpoint:
+1. POST /api/convert — Rasmlarni PDF ga aylantirish
+2. POST /api/ocr — OCR matn aniqlash
+3. POST /api/compress — PDF hajmini kamaytirish
+4. POST /api/edit — Rasmni tahrirlash
+
+🔧 Web interfeysda:
+- Drag & Drop fayl yuklash
+- Xizmat turini tanlash (Convert, OCR, Compress, Edit)
+- Sifat, varaq o'lchami, yo'nalish sozlamalari
+- Progress bar bilan jarayonni kuzatish
+- Natijani bir tugma bilan yuklab olish
+
+📊 Statistika endpoint:
+- GET /api/stats — Platforma statistikasi
+
+═══════════════════════════════════════════════════════════════
+SLAYD 10: OCR — MATN ANIQLASH TIZIMI
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🔍 OCR — Optical Character Recognition
+
+OCR tizimi qanday ishlaydi:
+
+1️⃣ Foydalanuvchi rasmni yuboradi
+2️⃣ Rasm OCR uchun oldindan qayta ishlanadi (kontrast oshirish, keskinlashtirish)
+3️⃣ Tesseract OCR matnni aniqlaydi
+4️⃣ Qidiriladigan (searchable) PDF yaratiladi
+5️⃣ Foydalanuvchiga tayyor PDF yuboriladi
+
+🌍 Qo'llab-quvvatlanadigan tillar:
+🇺🇿 O'zbek tili (uzb)
+🇷🇺 Rus tili (rus)
+🇬🇧 Ingliz tili (eng)
+🇸🇦 Arab tili (ara)
+
+🧠 Texnologiyalar:
+- pytesseract — Google Tesseract OCR engine
+- Pillow — Rasmni oldindan qayta ishlash
+- image_to_pdf_or_hocr — Searchable PDF yaratish
+- Ko'p rasmli OCR qo'llab-quvvatlash (bir nechta rasmni bitta searchable PDF ga birlashtirish)
+
+═══════════════════════════════════════════════════════════════
+SLAYD 11: RASM TAHRIRLASH
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: ✏️ Rasm Tahrirlash Imkoniyatlari
+
+ImageEditor klassi orqali quyidagi tahrirlash amallari bajariladi:
+
+☀️ Yorqinlik (Brightness):
+- -50%, -25%, Normal, +25%, +50%
+- Pillow ImageEnhance.Brightness
+
+🎛️ Kontrast (Contrast):
+- Past (0.5x) → Juda yuqori (3.0x)
+- Pillow ImageEnhance.Contrast
+
+🖤 Qora-Oq (Grayscale):
+- RGB → "L" mode konversiyasi
+
+🔄 Aylantirish (Rotation):
+- 90°, 180°, 270° burilish
+- EXIF orientatsiyani avtomatik tuzatish
+
+🔪 Keskinlashtirish (Sharpen):
+- ImageEnhance.Sharpness
+- 1.0x (normal) → 3.0x (kuchli)
+
+📄 A4 Moslashtirish:
+- Rasmni A4 sahifasiga proporsional moslashtirish
+- Portrait va Landscape qo'llab-quvvatlash
+- Oq fon bilan to'ldirish
+
+Har bir amal real-time preview bilan — tahrirlang va keyin PDF ga aylantiring!
+
+═══════════════════════════════════════════════════════════════
+SLAYD 12: MA'LUMOTLAR BAZASI
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🗃️ Ma'lumotlar Bazasi Arxitekturasi
+
+SQLite + aiosqlite (asinxron) — serverless, yengil va tez
+
+5 ta asosiy jadval:
+
+👤 users jadvali:
+- user_id, username, full_name, lang, is_banned, created_at, last_active
+
+📋 sessions jadvali:
+- Foydalanuvchi sessiyalari (collecting, editing, idle rejimlari)
+- images_data — JSON formatda rasm ro'yxati
+
+📄 pdf_history jadvali:
+- Yaratilgan PDF lar tarixi
+- file_id, file_name, file_size, pages, created_at
+- Har foydalanuvchi uchun oxirgi 5 ta saqlanadi
+
+📊 statistics jadvali:
+- Foydalanuvchi harakatlari logi
+- action_type: pdf_created, ocr_used, image_edited, error_occurred
+
+⚙️ settings jadvali:
+- Foydalanuvchi sozlamalari (JSON formatda)
+- quality, pagesize, orientation, margin, ocr_lang
+
+Avtomatik tozalash: APScheduler har kecha 03:00 da eski fayllar va yozuvlarni tozalaydi
+
+═══════════════════════════════════════════════════════════════
+SLAYD 13: XAVFSIZLIK VA HIMOYA
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🔒 Xavfsizlik Choralari
+
+🛡️ Rate Limiting:
+- Har foydalanuvchi uchun 1 daqiqada maksimal 10 so'rov
+- Spamdan himoya
+
+📏 Fayl Cheklovlari:
+- Maksimal fayl hajmi: 20 MB
+- Bir sessiyada maksimal rasmlar: 50 ta
+- Telegram yuklash limiti: 50 MB
+
+🚫 Foydalanuvchi Boshqaruvi:
+- Admin tomonidan foydalanuvchini bloklash/blokdan chiqarish
+- Bloklangan foydalanuvchilar bot bilan muloqot qila olmaydi
+
+👑 Admin Himoyasi:
+- Admin buyruqlari faqat ADMIN_IDS ro'yxatidagi IDlar uchun
+- .env faylidan boshqariladi
+
+🧹 Avtomatik Tozalash:
+- Vaqtinchalik fayllar 2 soatdan keyin o'chiriladi
+- PDF tarix yozuvlari 7 kundan keyin o'chiriladi
+- /tmp papkasida xavfsiz saqlash
+
+🔐 Muhit O'zgaruvchilari:
+- Barcha maxfiy ma'lumotlar .env faylida
+- BOT_TOKEN, ADMIN_IDS himoyalangan
+
+═══════════════════════════════════════════════════════════════
+SLAYD 14: KO'P TILLILIK (LOCALIZATION)
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🌍 Ko'p Tillilik Qo'llab-quvvatlash
+
+3 tilda to'liq interfeys:
+
+🇺🇿 O'zbek tili (uz) — Default til
+- Barcha xabarlar, tugmalar va yordam o'zbek tilida
+- /lang buyrug'i bilan tanlash
+
+🇷🇺 Rus tili (ru)
+- Полный интерфейс на русском языке
+- Все команды и сообщения переведены
+
+🇬🇧 Ingliz tili (en)
+- Full English interface
+- All commands and messages translated
+
+Texnik amalga oshirish:
+- locales/ papkasida alohida fayllarda (uz.py, ru.py, en.py)
+- get_text(key, lang) funksiyasi orqali tarjima
+- Foydalanuvchi tili ma'lumotlar bazasida saqlanadi
+- Birinchi /start da til tanlash interfeysi
+
+═══════════════════════════════════════════════════════════════
+SLAYD 15: DEPLOY VA HOSTING
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🚀 Deploy va Hosting
+
+RAILWAY PLATFORMASI:
+🚂 Railway.app — Cloud PaaS platformasi
+- Avtomatik GitHub dan deploy
+- Docker konteyner yordamida ishga tushirish
+- Environment variables boshqaruvi
+- Persistent volume (/data papkasi)
+
+🐳 DOCKER:
+- Python 3.10-slim bazaviy rasm
+- Tesseract OCR + 4 til paketi o'rnatiladi
+- pip install orqali barcha Python kutubxonalar
+- CMD: python3 main.py
+
+📁 Muhim fayllar:
+- Dockerfile — Konteyner konfiguratsiyasi
+- Procfile — Railway start buyrug'i
+- railway.toml — Railway sozlamalari
+- runtime.txt — Python versiya (3.10.x)
+- requirements.txt — 15+ Python kutubxona
+
+⚡ Ishlash tartibi:
+1. Kod GitHub ga push qilinadi
+2. Railway avtomatik build boshlaydi
+3. Dockerfile asosida Docker image yaratiladi
+4. Bot va Web server parallel ishga tushadi (asyncio.gather)
+5. Bot polling rejimida, Web server 0.0.0.0:PORT da tinglaydi
+
+═══════════════════════════════════════════════════════════════
+SLAYD 16: LOYIHA FAYL STRUKTURASI
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 📁 Loyiha Strukturasi
+
+Pdf bot/
+├── 🚀 main.py              — Asosiy kirish nuqtasi (Bot + Web parallel)
+├── ⚙️ config.py            — Markaziy konfiguratsiya
+├── 🗃️ database.py          — SQLite CRUD operatsiyalari
+├── 🌐 web_app.py           — FastAPI web server
+│
+├── 📂 handlers/             — Telegram bot handlerlari
+│   ├── start_handler.py     — /start, /help, /lang
+│   ├── image_handler.py     — Rasm qabul qilish va qayta ishlash
+│   ├── pdf_handler.py       — /collect, /done, /history
+│   ├── settings_handler.py  — /quality, /pagesize, /orientation, /margin
+│   ├── admin_handler.py     — /admin panel
+│   └── reverse_handler.py   — /reverse (PDF → Rasm)
+│
+├── 📂 services/             — Biznes logika servislari
+│   ├── pdf_converter.py     — PDF yaratish (img2pdf + Pillow)
+│   ├── ocr_service.py       — Matn aniqlash (Tesseract)
+│   ├── image_editor.py      — Rasm tahrirlash (Pillow)
+│   └── file_optimizer.py    — PDF → Rasm, ZIP, optimallashtirish
+│
+├── 📂 locales/              — Ko'p tillilik
+│   ├── uz.py, ru.py, en.py
+│
+├── 📂 utils/                — Yordamchi funksiyalar
+│   ├── keyboards.py         — Inline klaviaturalar
+│   └── helpers.py           — Umumiy yordamchi funksiyalar
+│
+├── 📂 website/              — Web frontend
+│   ├── index.html, css/, js/
+│
+├── 🐳 Dockerfile            — Docker konfiguratsiya
+├── 📋 requirements.txt      — Python kutubxonalari (15+)
+└── 📝 .env                  — Muhit o'zgaruvchilari
+
+═══════════════════════════════════════════════════════════════
+SLAYD 17: KELAJAK REJALARI (FUTURE PLANS)
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: 🚀 Kelajak Rejalari
+
+Qisqa muddatli (1-3 oy):
+📌 PDF larni birlashtirish (Merge PDF)
+📌 PDF ni bo'laklarga ajratish (Split PDF)
+📌 PDF ni Word formatiga aylantirish
+📌 Watermark (suv belgisi) qo'shish
+📌 PDF sahifalarni qayta tartiblash
+
+O'rta muddatli (3-6 oy):
+🎯 EasyOCR integratsiyasi (GPU acceleration)
+🎯 AI asosidagi rasm sifatini oshirish
+🎯 Batch processing — bir vaqtda ko'p fayl ishlash
+🎯 Telegram Mini App (WebApp) integratsiyasi
+🎯 Foydalanuvchilar uchun shaxsiy kabinet
+
+Uzoq muddatli (6-12 oy):
+🌟 Premium obuna tizimi
+🌟 API tashqi integratsiya (boshqa xizmatlarga ulanish)
+🌟 Mobil ilova (React Native)
+🌟 AI yordamida hujjat tahlili
+🌟 Cloud saqlash (Google Drive, Dropbox integratsiya)
+
+═══════════════════════════════════════════════════════════════
+SLAYD 18: XULOSA VA SAVOL-JAVOB
+═══════════════════════════════════════════════════════════════
+
+Sarlavha: ✅ Xulosa
+
+Image to PDF Pro Bot — bu:
+✅ To'liq funksional Telegram bot + Web platforma
+✅ 100% bepul va ochiq kodli
+✅ Zamonaviy texnologiyalar (Python, FastAPI, Docker)
+✅ Ko'p tillilik (O'zbek, Rus, Ingliz)
+✅ OCR — 4 tilda matn aniqlash
+✅ Professional rasm tahrirlash
+✅ Xavfsiz va tezkor
+✅ Railway orqali cloud deploy
+
+🤖 Telegram Bot: @PDFYordamBot
+📢 Telegram Kanal: @MyProjectm
+💻 GitHub: github.com/suhrobmadaminov/PDF-BOT
+
+🙋 Savollar bormi?
+
+═══════════════════════════════════════════════════════════════
+DIZAYN KO'RSATMALARI (GAMMA AI UCHUN):
+═══════════════════════════════════════════════════════════════
+
+- Rang sxemasi: Asosiy — ko'k (#2563EB) va binafsha (#7C3AED) gradient, qizil aksentlar (#E74C3C)
+- Shrift: Zamonaviy, professional (Inter yoki Montserrat uslubida)
+- Har bir slaydda tegishli ikonka va emoji ishlatilsin
+- Diagramma va flowchartlar vizual ko'rsatilsin
+- Kartkochkalar (cards) va jadvallar bilan ma'lumotlarni tuzilgan qilib ko'rsat
+- Fon: Oq yoki juda yengil gradient, professional ko'rinish
+- Kod snippetlari bo'lsa, syntax highlighting bilan ko'rsat
+- Har bir slayd o'ziga xos vizual elementga ega bo'lsin
+- Minimalist, lekin informativ dizayn
+- Animatsiyalar yumshoq va professional bo'lsin
