@@ -40,16 +40,20 @@
     <!-- ═══════════════════════════════════════════ -->
     <!--  HEADER / NAVIGATION                        -->
     <!-- ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  HEADER / NAVIGATION (REPLICA)              -->
+    <!-- ═══════════════════════════════════════════ -->
     <header class="header" id="header">
         <div class="container header__inner">
-            <a href="#" class="header__logo" onclick="showToolsGrid(); return false;">
+            <a href="#" class="header__logo">
                 <span class="header__logo-icon">📄</span>
                 <span class="header__logo-text">iLovePDF <span style="font-weight: 300; opacity: 0.7;">Pro</span></span>
             </a>
 
             <nav class="header__nav" id="nav">
-                <a href="#" class="header__link" onclick="showToolsGrid(); return false;">ВСЕ ИНСТРУМЕНТЫ PDF</a>
-                <a href="https://t.me/PDFYordamBot" target="_blank" class="header__link">ТЕЛЕГРАМ БОТ</a>
+                <a href="#tools" class="header__link">ВСЕ ИНСТРУМЕНТЫ PDF</a>
+                <a href="#converter" class="header__link">ОНЛАЙН PDF</a>
+                <a href="#how-it-works" class="header__link">КАК ЭТО РАБОТАЕТ</a>
             </nav>
 
             <div class="header__actions">
@@ -71,7 +75,8 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <nav class="mobile-menu__nav">
-                <a href="#" class="mobile-menu__link" onclick="showToolsGrid(); return false;">ИНСТРУМЕНТЫ PDF</a>
+                <a href="#tools" class="mobile-menu__link">ИНСТРУМЕНТЫ PDF</a>
+                <a href="#converter" class="mobile-menu__link">ОНЛАЙН PDF</a>
                 <a href="https://t.me/PDFYordamBot" target="_blank" class="mobile-menu__link">ТЕЛЕГРАМ БОТ</a>
             </nav>
             <div class="mobile-menu__actions">
@@ -81,9 +86,9 @@
     </header>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!--  HERO & TOOL GRID                           -->
+    <!--  HERO & TOOL GRID (REPLICA)                  -->
     <!-- ═══════════════════════════════════════════ -->
-    <section class="hero-replica" id="toolsGrid">
+    <section class="hero-replica" id="tools">
         <div class="container">
             <div class="hero-replica__content">
                 <h1 class="hero-replica__title">Онлайн-инструменты для любителей PDF</h1>
@@ -93,110 +98,62 @@
             </div>
 
             <div class="tools-grid">
-                <!-- Tool 1: JPG to PDF -->
-                <a href="javascript:;" class="tool-card" onclick="openToolPage('convert')">
-                    <div class="tool-card__icon icon--red">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#e5322d" opacity="0.15" />
-                            <path d="M8 12l3 3 5-5" stroke="#e5322d" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
+                <!-- Tool 1 -->
+                <a href="#converter" class="tool-card" onclick="selectTool('convert')">
+                    <div class="tool-card__icon icon--red">🖼️</div>
                     <h3 class="tool-card__title">JPG в PDF</h3>
                     <p class="tool-card__desc">Преобразуйте изображения JPG в PDF за считанные секунды. Легко
                         настраивайте ориентацию и поля.</p>
                 </a>
 
-                <!-- Tool 2: OCR PDF -->
-                <a href="javascript:;" class="tool-card" onclick="openToolPage('ocr')">
-                    <div class="tool-card__icon icon--green">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#4caf50" opacity="0.15" />
-                            <circle cx="11" cy="11" r="4" stroke="#4caf50" stroke-width="2" />
-                            <path d="M14 14l4 4" stroke="#4caf50" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
+                <!-- Tool 2 -->
+                <a href="#converter" class="tool-card" onclick="selectTool('ocr')">
+                    <div class="tool-card__icon icon--red">🔍</div>
                     <h3 class="tool-card__title">OCR PDF</h3>
                     <p class="tool-card__desc">Сделайте ваши отсканированные PDF-файлы доступными для поиска с помощью
                         точного распознавания текста.</p>
                 </a>
 
-                <!-- Tool 3: Compress PDF -->
-                <a href="javascript:;" class="tool-card" onclick="openToolPage('compress')">
-                    <div class="tool-card__icon icon--yellow">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#ff9800" opacity="0.15" />
-                            <path d="M12 8v8M8 12h8" stroke="#ff9800" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
+                <!-- Tool 3 -->
+                <a href="#converter" class="tool-card" onclick="selectTool('compress')">
+                    <div class="tool-card__icon icon--red">🗜️</div>
                     <h3 class="tool-card__title">Сжать PDF</h3>
                     <p class="tool-card__desc">Уменьшите размер файла PDF, сохраняя при этом максимально возможное
                         качество.</p>
                 </a>
 
-                <!-- Tool 4: Edit Image -->
-                <a href="javascript:;" class="tool-card" onclick="openToolPage('edit')">
-                    <div class="tool-card__icon icon--purple">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#9c27b0" opacity="0.15" />
-                            <path d="M15.5 5.5l3 3L8 19H5v-3L15.5 5.5z" stroke="#9c27b0" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <h3 class="tool-card__title">Редактировать</h3>
-                    <p class="tool-card__desc">Настройте яркость, контраст, поверните и улучшите ваши изображения перед
-                        конвертацией.</p>
+                <!-- Tool 4 -->
+                <a href="#converter" class="tool-card" onclick="selectTool('edit')">
+                    <div class="tool-card__icon icon--red">✏️</div>
+                    <h3 class="tool-card__title">Редактировать PDF</h3>
+                    <p class="tool-card__desc">Добавляйте текст, изображения, формы или аннотации в PDF-документ прямо в
+                        браузере.</p>
                 </a>
 
-                <!-- Tool 5 (Coming soon) -->
+                <!-- Tool 5 (Coming soon / Bot placeholders) -->
                 <div class="tool-card tool-card--inactive">
-                    <div class="tool-card__icon">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#999" opacity="0.15" />
-                            <path d="M7 7h4v4H7zM13 7h4v4h-4zM7 13h4v4H7zM13 13h4v4h-4z" stroke="#999"
-                                stroke-width="1.5" />
-                        </svg>
-                    </div>
+                    <div class="tool-card__icon">📚</div>
                     <h3 class="tool-card__title">Объединить PDF</h3>
                     <p class="tool-card__desc">Объедините несколько PDF-файлов в один документ за считанные секунды.</p>
-                    <span class="tool-card__badge-soon">Скоро</span>
                 </div>
 
                 <div class="tool-card tool-card--inactive">
-                    <div class="tool-card__icon">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#999" opacity="0.15" />
-                            <path d="M12 5v14M5 12h14" stroke="#999" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                    </div>
+                    <div class="tool-card__icon">📑</div>
                     <h3 class="tool-card__title">Разделить PDF</h3>
                     <p class="tool-card__desc">Извлеките одну или несколько страниц из PDF-файла или разделите его на
                         несколько частей.</p>
-                    <span class="tool-card__badge-soon">Скоро</span>
                 </div>
 
                 <div class="tool-card tool-card--inactive">
-                    <div class="tool-card__icon">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#999" opacity="0.15" />
-                            <path d="M8 7h8M8 12h6M8 17h4" stroke="#999" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                    </div>
+                    <div class="tool-card__icon">🔄</div>
                     <h3 class="tool-card__title">PDF в Word</h3>
                     <p class="tool-card__desc">Превратите ваши документы PDF в редактируемые файлы Microsoft Word.</p>
-                    <span class="tool-card__badge-soon">Скоро</span>
                 </div>
 
                 <div class="tool-card tool-card--inactive">
-                    <div class="tool-card__icon">
-                        <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="3" width="18" height="18" rx="2" fill="#999" opacity="0.15" />
-                            <path d="M7 7h10v2H7zM7 11h10v2H7zM7 15h6v2H7z" stroke="#999" stroke-width="1.5" />
-                        </svg>
-                    </div>
+                    <div class="tool-card__icon">📊</div>
                     <h3 class="tool-card__title">Excel в PDF</h3>
                     <p class="tool-card__desc">Превратите ваши таблицы Excel в удобные для чтения PDF-документы.</p>
-                    <span class="tool-card__badge-soon">Скоро</span>
                 </div>
             </div>
         </div>
@@ -204,286 +161,123 @@
 
 
     <!-- ═══════════════════════════════════════════ -->
-    <!--  TOOL PAGES (each tool gets its own page)  -->
+    <!--  WEB CONVERTER (NEW FUNCTIONAL SECTION)     -->
     <!-- ═══════════════════════════════════════════ -->
-
-    <!-- ── JPG to PDF ────────────────────────────── -->
-    <section class="tool-page" id="toolPage-convert" style="display:none;">
-        <div class="tool-page__header" style="background: linear-gradient(135deg, #e5322d 0%, #ff6b6b 100%);">
-            <div class="container">
-                <a href="javascript:;" class="tool-page__back" onclick="showToolsGrid()">
-                    ← Все инструменты
-                </a>
+    <section class="converter" id="converter">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Onlayn <span class="text-gradient">Konvertatsiya</span></h2>
+                <p class="section-subtitle">Fayllarni to'g'ridan-to'g'ri brauzerda qayta ishlang — tez va xavfsiz</p>
             </div>
-        </div>
-        <div class="tool-page__body">
-            <div class="container tool-page__container">
-                <h1 class="tool-page__title">JPG в PDF</h1>
-                <p class="tool-page__desc">Преобразуйте ваши изображения JPG в PDF документы высокого качества. Легко
-                    настраивайте ориентацию и поля.</p>
 
-                <div class="tool-page__upload" id="dropzone-convert">
-                    <input type="file" id="fileInput-convert" multiple hidden accept="image/*">
-                    <label for="fileInput-convert" class="tool-page__btn tool-page__btn--red">
+            <div class="converter__box reveal">
+                <!-- Dropzone (iLovePDF Style) -->
+                <div class="dropzone" id="dropzone">
+                    <input type="file" id="fileInput" multiple hidden accept="image/*">
+                    <div class="dropzone__icon">🚀</div>
+                    <h3 class="dropzone__title">Выберите изображения</h3>
+                    <p class="dropzone__desc">или перетащите изображения сюда</p>
+
+                    <label for="fileInput" id="fileInputLabel">
                         Выбрать изображения
                     </label>
-                    <p class="tool-page__drop-text">или перетащите изображения сюда</p>
-                    <div class="tool-page__file-list" id="fileList-convert"></div>
+
+                    <div id="fileList"></div>
                 </div>
 
-                <!-- Options (shown after files selected) -->
-                <div class="tool-page__options" id="options-convert" style="display:none;">
+                <!-- Options -->
+                <div class="converter__options">
                     <div class="option-group">
-                        <label class="option-group__label">Качество</label>
-                        <select class="select-custom" id="qualitySelect-convert">
-                            <option value="high">Высокое (High Quality)</option>
-                            <option value="medium">Среднее (Default)</option>
-                            <option value="low">Низкое (Fastest)</option>
-                            <option value="ultra">Ультра (Best)</option>
+                        <label class="option-group__label">Xizmat turi</label>
+                        <select class="select-custom" id="modeSelect">
+                            <option value="convert">🖼️ Rasmlarni PDF ga</option>
+                            <option value="ocr">🔍 Matnni aniqlash (OCR)</option>
+                            <option value="compress">🗜️ PDF hajmini kamaytirish</option>
+                            <option value="edit">✏️ Rasmni tahrirlash</option>
                         </select>
                     </div>
-                    <div class="option-group">
-                        <label class="option-group__label">Размер страницы</label>
-                        <select class="select-custom" id="pageSizeSelect-convert">
-                            <option value="A4">Стандарт A4</option>
-                            <option value="A5">Маленький A5</option>
-                            <option value="A3">Большой A3</option>
-                            <option value="Letter">Letter</option>
-                            <option value="Original">Оригинальный размер</option>
+                    <div class="option-group" id="qualityGroup">
+                        <label class="option-group__label">Sifat darajasi</label>
+                        <select class="select-custom" id="qualitySelect">
+                            <option value="high">Yuqori (High Qualtiy)</option>
+                            <option value="medium">O'rta (Default)</option>
+                            <option value="low">Past (Fastest)</option>
+                            <option value="best">Eng yuqori (Best)</option>
                         </select>
                     </div>
-                    <div class="option-group">
-                        <label class="option-group__label">Ориентация</label>
-                        <select class="select-custom" id="orientationSelect-convert">
-                            <option value="portrait">Портрет</option>
-                            <option value="landscape">Ландшафт</option>
+                    <div class="option-group" id="pageSizeGroup">
+                        <label class="option-group__label">Varaq o'lchami</label>
+                        <select class="select-custom" id="pageSizeSelect">
+                            <option value="A4">Standart A4</option>
+                            <option value="A5">Kichik A5</option>
+                            <option value="A3">Katta A3</option>
+                            <option value="Original">Asl rasm o'lchami</option>
+                        </select>
+                    </div>
+                    <div class="option-group" id="ocrLangGroup" style="display: none;">
+                        <label class="option-group__label">Matn tili</label>
+                        <select class="select-custom" id="ocrSelect">
+                            <option value="uz">🇺🇿 O'zbek tili</option>
+                            <option value="en">🇬🇧 Ingliz tili</option>
+                            <option value="ru">🇷🇺 Rus tili</option>
+                        </select>
+                    </div>
+                    <div class="option-group" id="editActionGroup" style="display: none;">
+                        <label class="option-group__label">O'zgartirish</label>
+                        <select class="select-custom" id="editActionSelect">
+                            <option value="ed_bri_p25">Yorqinroq (+25%)</option>
+                            <option value="ed_con_hi">Kontrastni oshirish</option>
+                            <option value="ed_gray">Oq-qora format</option>
+                            <option value="ed_rot_90">90 gradusga burish</option>
+                            <option value="ed_sharp">Keskinlikni oshirish</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Action -->
-                <div class="tool-page__action" id="action-convert" style="display:none;">
-                    <button class="btn btn--xl btn--primary tool-page__convert-btn" id="convertBtn-convert">
-                        <span>Конвертировать в PDF</span>
+                <div class="converter__action">
+                    <button class="btn btn--xl btn--primary" id="convertBtn">
+                        <span id="btnText">Hozir konvertatsiya qilish</span>
                     </button>
-                    <div class="progress" id="progress-convert">
-                        <div class="progress__bar" id="progressFill-convert"></div>
+
+                    <div class="progress" id="progressBar">
+                        <div class="progress__bar" id="progressFill"></div>
                     </div>
                 </div>
 
                 <!-- Result -->
-                <div class="tool-page__result" id="result-convert" style="display:none;">
-                    <div class="result-card result-card--visible">
-                        <div class="result-card__icon">✅</div>
-                        <div class="result-card__info">
-                            <h4 class="result-card__title">Конвертация завершена!</h4>
-                            <p class="result-card__meta" id="resultMeta-convert"></p>
-                        </div>
-                        <a href="#" class="btn btn--primary btn--lg" id="downloadBtn-convert" download>Скачать PDF</a>
+                <div class="result-card" id="resultCard">
+                    <div class="result-card__icon">✅</div>
+                    <div class="result-card__info">
+                        <h4 class="result-card__title">Amal bajarildi!</h4>
+                        <p class="result-card__meta" id="resultMeta">Tayyor fayl: output.pdf</p>
                     </div>
+                    <a href="#" class="btn btn--primary" id="downloadBtn" download>Yuklab olish</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── OCR PDF ───────────────────────────────── -->
-    <section class="tool-page" id="toolPage-ocr" style="display:none;">
-        <div class="tool-page__header" style="background: linear-gradient(135deg, #4caf50 0%, #81c784 100%);">
-            <div class="container">
-                <a href="javascript:;" class="tool-page__back" onclick="showToolsGrid()">
-                    ← Все инструменты
-                </a>
-            </div>
-        </div>
-        <div class="tool-page__body">
-            <div class="container tool-page__container">
-                <h1 class="tool-page__title">OCR PDF</h1>
-                <p class="tool-page__desc">Распознайте текст на ваших изображениях и создайте PDF файлы с возможностью
-                    поиска. Поддержка 4 языков.</p>
-
-                <div class="tool-page__upload" id="dropzone-ocr">
-                    <input type="file" id="fileInput-ocr" hidden accept="image/*">
-                    <label for="fileInput-ocr" class="tool-page__btn tool-page__btn--green">
-                        Выбрать изображение
-                    </label>
-                    <p class="tool-page__drop-text">или перетащите изображение сюда</p>
-                    <div class="tool-page__file-list" id="fileList-ocr"></div>
-                </div>
-
-                <div class="tool-page__options" id="options-ocr" style="display:none;">
-                    <div class="option-group">
-                        <label class="option-group__label">Язык текста</label>
-                        <select class="select-custom" id="ocrLangSelect-ocr">
-                            <option value="uz">🇺🇿 O'zbek tili</option>
-                            <option value="en">🇬🇧 English</option>
-                            <option value="ru">🇷🇺 Русский</option>
-                            <option value="ar">🇸🇦 العربية</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="tool-page__action" id="action-ocr" style="display:none;">
-                    <button class="btn btn--xl btn--green tool-page__convert-btn" id="convertBtn-ocr">
-                        <span>Распознать текст</span>
-                    </button>
-                    <div class="progress" id="progress-ocr">
-                        <div class="progress__bar progress__bar--green" id="progressFill-ocr"></div>
-                    </div>
-                </div>
-
-                <div class="tool-page__result" id="result-ocr" style="display:none;">
-                    <div class="result-card result-card--visible">
-                        <div class="result-card__icon">✅</div>
-                        <div class="result-card__info">
-                            <h4 class="result-card__title">Текст распознан!</h4>
-                            <p class="result-card__meta" id="resultMeta-ocr"></p>
-                        </div>
-                        <a href="#" class="btn btn--primary btn--lg" id="downloadBtn-ocr" download>Скачать PDF</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── Compress PDF ──────────────────────────── -->
-    <section class="tool-page" id="toolPage-compress" style="display:none;">
-        <div class="tool-page__header" style="background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);">
-            <div class="container">
-                <a href="javascript:;" class="tool-page__back" onclick="showToolsGrid()">
-                    ← Все инструменты
-                </a>
-            </div>
-        </div>
-        <div class="tool-page__body">
-            <div class="container tool-page__container">
-                <h1 class="tool-page__title">Сжать PDF</h1>
-                <p class="tool-page__desc">Уменьшите размер вашего PDF файла, сохраняя при этом качество. Оптимизируйте
-                    ваши PDF файлы.</p>
-
-                <div class="tool-page__upload" id="dropzone-compress">
-                    <input type="file" id="fileInput-compress" hidden accept=".pdf,application/pdf">
-                    <label for="fileInput-compress" class="tool-page__btn tool-page__btn--orange">
-                        Выбрать PDF файлы
-                    </label>
-                    <p class="tool-page__drop-text">или перетащите файлы PDF сюда</p>
-                    <div class="tool-page__file-list" id="fileList-compress"></div>
-                </div>
-
-                <div class="tool-page__options" id="options-compress" style="display:none;">
-                    <div class="option-group">
-                        <label class="option-group__label">Степень сжатия</label>
-                        <select class="select-custom" id="qualitySelect-compress">
-                            <option value="medium">Рекомендуемое сжатие</option>
-                            <option value="high">Максимальное качество</option>
-                            <option value="low">Максимальное сжатие</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="tool-page__action" id="action-compress" style="display:none;">
-                    <button class="btn btn--xl btn--orange tool-page__convert-btn" id="convertBtn-compress">
-                        <span>Сжать PDF</span>
-                    </button>
-                    <div class="progress" id="progress-compress">
-                        <div class="progress__bar progress__bar--orange" id="progressFill-compress"></div>
-                    </div>
-                </div>
-
-                <div class="tool-page__result" id="result-compress" style="display:none;">
-                    <div class="result-card result-card--visible">
-                        <div class="result-card__icon">✅</div>
-                        <div class="result-card__info">
-                            <h4 class="result-card__title">PDF сжат!</h4>
-                            <p class="result-card__meta" id="resultMeta-compress"></p>
-                        </div>
-                        <a href="#" class="btn btn--primary btn--lg" id="downloadBtn-compress" download>Скачать PDF</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── Edit Image ────────────────────────────── -->
-    <section class="tool-page" id="toolPage-edit" style="display:none;">
-        <div class="tool-page__header" style="background: linear-gradient(135deg, #9c27b0 0%, #ce93d8 100%);">
-            <div class="container">
-                <a href="javascript:;" class="tool-page__back" onclick="showToolsGrid()">
-                    ← Все инструменты
-                </a>
-            </div>
-        </div>
-        <div class="tool-page__body">
-            <div class="container tool-page__container">
-                <h1 class="tool-page__title">Редактировать изображение</h1>
-                <p class="tool-page__desc">Примените фильтры, измените яркость, контраст, поверните и улучшите ваши
-                    изображения.</p>
-
-                <div class="tool-page__upload" id="dropzone-edit">
-                    <input type="file" id="fileInput-edit" hidden accept="image/*">
-                    <label for="fileInput-edit" class="tool-page__btn tool-page__btn--purple">
-                        Выбрать изображение
-                    </label>
-                    <p class="tool-page__drop-text">или перетащите изображение сюда</p>
-                    <div class="tool-page__file-list" id="fileList-edit"></div>
-                </div>
-
-                <div class="tool-page__options" id="options-edit" style="display:none;">
-                    <div class="option-group">
-                        <label class="option-group__label">Действие</label>
-                        <select class="select-custom" id="editActionSelect-edit">
-                            <option value="ed_bri_p25">☀️ Увеличить яркость (+25%)</option>
-                            <option value="ed_bri_m25">🌙 Уменьшить яркость (-25%)</option>
-                            <option value="ed_con_hi">🎛️ Увеличить контраст</option>
-                            <option value="ed_gray">🖤 Чёрно-белое</option>
-                            <option value="ed_rot_90">🔄 Повернуть 90°</option>
-                            <option value="ed_rot_180">🔄 Повернуть 180°</option>
-                            <option value="ed_sharp">🔪 Увеличить резкость</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="tool-page__action" id="action-edit" style="display:none;">
-                    <button class="btn btn--xl btn--purple tool-page__convert-btn" id="convertBtn-edit">
-                        <span>Применить изменения</span>
-                    </button>
-                    <div class="progress" id="progress-edit">
-                        <div class="progress__bar progress__bar--purple" id="progressFill-edit"></div>
-                    </div>
-                </div>
-
-                <div class="tool-page__result" id="result-edit" style="display:none;">
-                    <div class="result-card result-card--visible">
-                        <div class="result-card__icon">✅</div>
-                        <div class="result-card__info">
-                            <h4 class="result-card__title">Изображение обработано!</h4>
-                            <p class="result-card__meta" id="resultMeta-edit"></p>
-                        </div>
-                        <a href="#" class="btn btn--primary btn--lg" id="downloadBtn-edit" download>Скачать файл</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <!-- ═══════════════════════════════════════════ -->
     <!--  FOOTER (iLovePDF REPLICA)                  -->
     <!-- ═══════════════════════════════════════════ -->
-    <footer class="footer" id="siteFooter">
+    <footer class="footer">
         <div class="container footer__inner">
             <div class="footer__col">
                 <h4 class="footer__title">ILOVEPDF</h4>
-                <a href="#" class="footer__link" onclick="showToolsGrid(); return false;">Главная</a>
+                <a href="#" class="footer__link">Главная</a>
                 <a href="#" class="footer__link">Функции</a>
                 <a href="#" class="footer__link">Цены</a>
                 <a href="#" class="footer__link">Инструменты</a>
             </div>
             <div class="footer__col">
                 <h4 class="footer__title">ИНСТРУМЕНТЫ</h4>
-                <a href="javascript:;" onclick="openToolPage('convert')" class="footer__link">JPG в PDF</a>
-                <a href="javascript:;" onclick="openToolPage('ocr')" class="footer__link">OCR PDF</a>
-                <a href="javascript:;" onclick="openToolPage('compress')" class="footer__link">Сжать PDF</a>
-                <a href="javascript:;" onclick="openToolPage('edit')" class="footer__link">Редактировать</a>
+                <a href="#converter" onclick="selectTool('convert')" class="footer__link">JPG в PDF</a>
+                <a href="#converter" onclick="selectTool('ocr')" class="footer__link">OCR PDF</a>
+                <a href="#converter" onclick="selectTool('compress')" class="footer__link">Сжать PDF</a>
+                <a href="#converter" onclick="selectTool('edit')" class="footer__link">Редактировать PDF</a>
             </div>
             <div class="footer__col">
                 <h4 class="footer__title">ПОМОЩЬ</h4>
