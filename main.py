@@ -3,6 +3,7 @@ Image to PDF Pro Bot — Asosiy kirish nuqtasi.
 Barcha handlerlarni ro'yxatga oladi, APScheduler ni ishga tushiradi va botni yuritadi.
 """
 
+import os
 import sys
 import asyncio
 from pathlib import Path
@@ -297,19 +298,13 @@ def register_handlers(application: Application) -> None:
 
 # ── Asosiy ishga tushirish funksiyasi ─────────────────────────────────────────
 
-# ── Asosiy ishga tushirish funksiyasi ─────────────────────────────────────────
-
-import asyncio
-
 async def run_bot(application: Application) -> None:
     """Telegram botni ishga tushirish."""
     await application.initialize()
     await application.start()
-    if application.post_init:
-        await application.post_init(application)
-    
+
     logger.info("Bot polling boshlandi...")
-    await application.updater.start_polling(
+    await application.run_polling(
         allowed_updates=Update.ALL_TYPES,
         drop_pending_updates=True,
     )
@@ -375,5 +370,4 @@ def main() -> None:
         pass
 
 if __name__ == "__main__":
-    import os
     main()

@@ -15,6 +15,7 @@ from config import TEMP_DIR, HISTORY_DIR, DEFAULT_SETTINGS, QUALITY_SETTINGS
 from services.pdf_converter import PDFConverter
 from services.ocr_service import OCRService
 from services.file_optimizer import FileOptimizer
+from services.image_editor import ImageEditor
 
 app = FastAPI(title="Image to PDF Pro Web API")
 
